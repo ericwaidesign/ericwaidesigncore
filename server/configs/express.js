@@ -39,7 +39,7 @@ module.exports = function() {
     // ROUTES FOR API
     // =======================================================
     var routePath = "../routes/";
-    fs.readdirSync(__dirname + "../" + routePath).forEach(function(file) {
+    fs.readdirSync(__dirname + "/" + routePath).forEach(function(file) {
         var route = require(routePath + file); // path to routes.js
         route(app);
     });
