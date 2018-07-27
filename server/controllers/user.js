@@ -2,7 +2,7 @@
 'use strict'
 
 // Load the module dependencies
-var User = require('../models/user');
+var User = require('../models/User');
 
 // for testing
 exports.test = function(req, res) {

@@ -3,7 +3,7 @@
 
 // Load the module dependencies
 var jwt = require('jsonwebtoken'); 
-var User = require('../models/user');
+var User = require('../models/User');
 var generalConfig = require('../configs/general');
 
 /**

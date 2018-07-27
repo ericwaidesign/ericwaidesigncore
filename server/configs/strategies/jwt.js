@@ -3,7 +3,7 @@
 
 // Load the module dependencies
 var passport = require('passport');
-var User = require('../../models/user');
+var User = require('../../models/User');
 var config = require('../general');
 var JwtStrategy = require('passport-jwt').Strategy;
 var ExtractJwt = require('passport-jwt').ExtractJwt;

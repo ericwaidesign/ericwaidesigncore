@@ -3,7 +3,7 @@
 
 // Load the module dependencies
 var passport = require('passport');
-var User = require('../../models/user');
+var User = require('../../models/User');
 var LocalStrategy = require('passport-local').Strategy;
 
 // use the 'email' field instead of a 'username' field
