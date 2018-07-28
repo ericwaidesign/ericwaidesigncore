@@ -20,6 +20,7 @@
   },
   "scripts": {
     "preinstall": "npm install pm2 -g",
+    "postinstall": "npm run build",
     "start": "pm2-runtime server/server.js -i max",
     "dev": "nodemon --watch server/server.js",
     "inspect": "node --inspect-brk server/server.js",
