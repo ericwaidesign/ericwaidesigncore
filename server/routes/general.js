@@ -21,5 +21,11 @@ module.exports = function(app) {
     app.get('/api/images', (req, res) => {
         res.sendFile(path.join(__dirname, '../../client/build/images.html'));
     });
+    
+    // The "catchall" handler: for any request that doesn't
+    // match one above, send back React's index.html file.
+    // app.get('*', (req, res) => {
+    //     res.sendFile(path.join(__dirname, '../../client/build/index.html'));
+    // });
 
 }
