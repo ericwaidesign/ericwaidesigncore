@@ -44,6 +44,12 @@ module.exports = function() {
         route(app);
     });
 
+    // The "catchall" handler: for any request that doesn't
+    // match one above, send back React's index.html file.
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '../../client/build/index.html'));
+    });
+
     // return Express server instance
     return app;
 

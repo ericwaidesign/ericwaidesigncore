@@ -17,14 +17,8 @@ module.exports = function(app) {
     app.get('/api/hello', (req, res) => {
         res.send({ express: 'Hello From Express' });
     });
-
-    // The "catchall" handler: for any request that doesn't
-    // match one above, send back React's index.html file.
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '../../client/build/index.html'));
-    });
-
-    app.get('/images', (req, res) => {
+    
+    app.get('/api/images', (req, res) => {
         res.sendFile(path.join(__dirname, '../../client/build/images.html'));
     });
 
