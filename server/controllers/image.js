@@ -6,7 +6,7 @@
 // Load the module dependencies
 var fs = require('fs');
 
-const imageDir = '.././src/assets/images/';
+const imageDir = '.././client/src/assets/images/';
 const fileType = ".jpg";
 
 exports.getImages = function(req, res) {
