@@ -19,11 +19,11 @@ module.exports = function(app) {
     app.get('/api/hello', (req, res) => {
         res.send({ express: 'Hello From Express' });
     });
-    
-    app.get('/images', (req, res) => {
-        res.sendFile(path.join(__dirname, '../../client/build/images.html'));
-    });
-    
+
+    /**
+    * HTTP GET /api/images
+    * Returns: the list of file name in JSON format
+    */
     app.get('/api/images', (req, res) => {
         imageController.getImages(req, res);
     });

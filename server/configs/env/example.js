@@ -3,10 +3,10 @@
 
 module.exports = {
 	// secret password to be used for the verification signature section of the JWT
-	secret: 'secret',
+	secret: '{secret}',
 	port: process.env.PORT || 3000,
 	db: {
-		uri: 'mongodb://core:Password1!@ds233531.mlab.com:33531/postdb1'
+		uri: '{db uri}'
 	},
-	url: 'https://ericwaidesigncore.herokuapp.com/'
+	url: '{heroku url}'
 };
