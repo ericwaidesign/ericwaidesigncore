@@ -5,6 +5,8 @@
 const express = require('express');
 const path = require('path');
 
+const imageController = require('../controllers/image');
+
 /* 
  * Module initialization
  */
@@ -18,14 +20,18 @@ module.exports = function(app) {
         res.send({ express: 'Hello From Express' });
     });
     
-    // app.get('/api/images', (req, res) => {
-    //     res.sendFile(path.join(__dirname, '../../client/build/images.html'));
-    // });
+    app.get('/images', (req, res) => {
+        res.sendFile(path.join(__dirname, '../../client/build/images.html'));
+    });
     
+    app.get('/api/images', (req, res) => {
+        imageController.getImages(req, res);
+    });
+
     // The "catchall" handler: for any request that doesn't
     // match one above, send back React's index.html file.
-    // app.get('*', (req, res) => {
-    //     res.sendFile(path.join(__dirname, '../../client/build/index.html'));
-    // });
+    app.get('/', (req, res) => {
+        res.sendFile(path.join(__dirname, '../../client/build/index.html'));
+    });
 
 }
