@@ -12,5 +12,3 @@
 /client/build
 
 # misc
-/configs/env/production.js
-/configs/env/development.js

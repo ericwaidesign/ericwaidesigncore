@@ -5,11 +5,11 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 // Load the module dependencies
-var app = require('./server/configs/express')(); // initializes module
+var app = require('./configs/express')(); // initializes module
 var http = require('http');
 
 // set environment specific configs into Express instance
-var config = require('./server/configs/general');
+var config = require('./configs/general');
 var port = process.env.PORT || config.port;
 app.set('port', port);
 
