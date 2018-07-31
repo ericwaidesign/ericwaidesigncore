@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ImageLoad from "./components/ImageLoad/ImageLoad";
+import ImageLoader from "./components/ImageLoader/ImageLoader";
 import '../src/assets/css/App.css';
 
 class App extends Component {
@@ -28,7 +28,7 @@ class App extends Component {
       var highRes = require('../src/assets/images/' + image);
       var lowRes = require('../src/assets/lowRes/lowRes_' + image);
       return (
-        <ImageLoad placeholder={lowRes} src={highRes} />
+        <ImageLoader placeholder={lowRes} src={highRes} />
 
         // <img src={require('../src/assets/images/' + image)} />
       );

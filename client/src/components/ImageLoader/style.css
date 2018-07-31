@@ -13,12 +13,12 @@
   z-index: 0;
 }
   
-.imageLoad_loadRes {
+.imageLoad_lowRes {
   position: absolute;
   z-index: 1;
 }
 
-.imageLoad_loadResChanged {
+.imageLoad_lowResChanged {
   position: absolute;
   z-index: 1;
   opacity: 0;
