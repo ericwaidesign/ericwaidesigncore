@@ -1,25 +1,14 @@
-.imageLoad {
+.image {
   width: 100%;
   height: auto;
   display: block;
-  /* top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0; */
+  position: absolute;
 }
 
-.imageLoad_highRes {
-  position: absolute;
-  z-index: 0;
-}
-  
-.imageLoad_lowRes {
-  position: absolute;
-  z-index: 1;
-}
-
-.imageLoad_lowResChanged {
-  position: absolute;
-  z-index: 1;
+.opacity_0 {
   opacity: 0;
+}
+
+.opacity_1 {
+  opacity: 1;
 }

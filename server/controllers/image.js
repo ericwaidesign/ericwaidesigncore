@@ -7,7 +7,7 @@
 var fs = require('fs');
 const path = require('path');
 
-const imageDir = '../../client/src/assets/images/';
+const imageDir = '../../client/src/assets/images/highRes/';
 
 /**
  * Resturns a list of file name in JSON format 

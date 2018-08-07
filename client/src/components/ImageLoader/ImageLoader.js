@@ -6,26 +6,36 @@ class ImageLoader extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lowResCssClass: 'imageLoad_lowRes'
+      lowResCssClass: 'opacity_1'
     };
-
-    this.imageLoaderHandler = this.imageLoaderHandler.bind(this);
   }
 
-  imageLoaderHandler() {
-    this.setState({ lowResCssClass: 'imageLoad_lowResChanged' });
+  imageLoaderHandler = () => {
+    this.setState({ lowResCssClass: 'opacity_0' });
   }
 
   render() {
     return (
       <div>
+        {/* Low res placeholder */}
         <img
-          className={`imageLoad ${this.state.lowResCssClass}`}
-          src={this.props.placeholder}
+          style={{
+            display: this.props.lowResDisplay,
+            zIndex: this.props.lowResZIndex
+          }}
+          id={this.props.highResId}
+          className={`image ${this.state.lowResCssClass}`}
+          src={this.props.lowResUrl}
         />
+        {/* High res */}
         <img
-          className="imageLoad imageLoad_highRes"
-          src={this.props.src}
+          style={{
+            display: this.props.lowResDisplay,
+            zIndex: this.props.highResZIndex
+          }}
+          id={this.props.lowResId}
+          className="image"
+          src={this.props.highResUrl}
           onLoad={this.imageLoaderHandler}
         />
       </div>

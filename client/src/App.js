@@ -24,13 +24,24 @@ class App extends Component {
   }
 
   render() {
-    const imageArray = this.state.images.map((image) => {
-      var highRes = require('../src/assets/images/' + image);
-      var lowRes = require('../src/assets/lowRes/lowRes_' + image);
+    var imageCount = 0;
+    var imageSetCount = 0;
+    const imageArray = this.state.images.map(image => {
+      var highRes = require('../src/assets/images/highRes/' + image);
+      var lowRes = require('../src/assets/images/lowRes/lowRes_' + image);
+      var imageSetDisplaySetting = imageSetCount=0 ? 'inline' : 'none';
+      imageSetCount += 1;
       return (
-        <ImageLoader placeholder={lowRes} src={highRes} />
-
-        // <img src={require('../src/assets/images/' + image)} />
+        <ImageLoader
+          highResId={'highRes_' + imageSetCount}
+          highResZIndex={imageCount += 1}
+          highResDisplay={imageSetDisplaySetting}
+          highResUrl={highRes} 
+          lowResId={'lowRes_' + imageSetCount}
+          lowResZIndex={imageCount += 1}
+          lowResDisplay={imageSetDisplaySetting}
+          lowResUrl={lowRes} 
+        />
       );
     });
 
