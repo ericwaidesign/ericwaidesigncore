@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '../src/assets/css/index.css';
-import App from './App';
+import './assets/css/index.css';
+import ImageLoaderApp from './components/ImageLoader/ImageLoaderApp';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<ImageLoaderApp />, document.getElementById('ImageLoaderRoot'));
 
 registerServiceWorker();

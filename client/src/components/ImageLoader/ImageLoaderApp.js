@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import ImageLoader from "./components/ImageLoader/ImageLoader";
-import '../src/assets/css/App.css';
+import ImageLoader from "./ImageLoader";
+import '../../assets/css/App.css';
 
-class App extends Component {
+class ImageLoaderApp extends Component {
   // Initialize state
   state = {
     images: []
@@ -26,11 +26,13 @@ class App extends Component {
   render() {
     var imageCount = 0;
     var imageSetCount = 0;
+    
     const imageArray = this.state.images.map(image => {
-      var highRes = require('../src/assets/images/highRes/' + image);
-      var lowRes = require('../src/assets/images/lowRes/lowRes_' + image);
-      var imageSetDisplaySetting = imageSetCount=0 ? 'inline' : 'none';
+      var highRes = require('../../assets/images/highRes/' + image);
+      var lowRes = require('../../assets/images/lowRes/lowRes_' + image);
+      var imageSetDisplaySetting = imageSetCount == 0 ? 'inline' : 'none';
       imageSetCount += 1;
+
       return (
         <ImageLoader
           highResId={'highRes_' + imageSetCount}
@@ -46,11 +48,11 @@ class App extends Component {
     });
 
     return (
-      <div className="App">
+      <div>
         {imageArray}
       </div>
     );
   }
 }
 
-export default App;
+export default ImageLoaderApp;
