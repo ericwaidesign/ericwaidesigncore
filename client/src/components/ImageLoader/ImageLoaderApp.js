@@ -1,16 +1,30 @@
 import React, { Component } from 'react';
+import { CSSTransitionGroup } from 'react-transition-group'
 import ImageLoader from "./ImageLoader";
-import '../../assets/css/App.css';
+import './transition.css';
 
 class ImageLoaderApp extends Component {
-  // Initialize state
+
   state = {
-    images: []
+    images: [],
+    currentImageIndex: 0
   }
 
   // Fetch images after first mount
   componentDidMount() {
     this.getImages();
+    this.timer = setInterval(this.tick, 3000);
+  }
+
+  getImageArraySize() {
+    this.state.images.length;
+  }
+
+  tick = () => {
+    this.setState({currentImageIndex: this.state.currentImageIndex + 1});
+    if (currentImageIndex >= this.state.images.length) {
+      this.setState({currentImageIndex: 0});
+    }
   }
 
   getImages = () => {
@@ -30,7 +44,7 @@ class ImageLoaderApp extends Component {
     const imageArray = this.state.images.map(image => {
       var highRes = require('../../assets/images/highRes/' + image);
       var lowRes = require('../../assets/images/lowRes/lowRes_' + image);
-      var imageSetDisplaySetting = imageSetCount == 0 ? 'inline' : 'none';
+      var imageSetDisplaySetting = imageSetCount == 0 ? 'inline' : 'inline';
       imageSetCount += 1;
 
       return (
@@ -49,7 +63,13 @@ class ImageLoaderApp extends Component {
 
     return (
       <div>
-        {imageArray}
+        <CSSTransitionGroup 
+          transitionName="imageLoader"
+          transitionEnterTimeout={500} 
+          transitionLeaveTimeout={300}
+        >
+          {imageArray}
+        </CSSTransitionGroup>
       </div>
     );
   }
