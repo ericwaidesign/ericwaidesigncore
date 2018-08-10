@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './style.css';
+import './transition.css';
 
 class ImageLoader extends Component {
 
@@ -23,7 +24,7 @@ class ImageLoader extends Component {
             display: this.props.lowResDisplay,
             zIndex: this.props.lowResZIndex
           }}
-          id={this.props.highResId}
+          id={this.props.lowResId}
           className={`image ${this.state.lowResCssClass}`}
           src={this.props.lowResUrl}
         />
@@ -33,7 +34,7 @@ class ImageLoader extends Component {
             display: this.props.lowResDisplay,
             zIndex: this.props.highResZIndex
           }}
-          id={this.props.lowResId}
+          id={this.props.highResId}
           className="image"
           src={this.props.highResUrl}
           onLoad={this.imageLoaderHandler}

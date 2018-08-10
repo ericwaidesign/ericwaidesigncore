@@ -1,75 +1,51 @@
 import React, { Component } from 'react';
-import { CSSTransitionGroup } from 'react-transition-group'
-import ImageLoader from "./ImageLoader";
-import './transition.css';
+import ImageLoaderTest from "./ImageLoaderTest";
 
 class ImageLoaderApp extends Component {
 
-  state = {
-    images: [],
-    currentImageIndex: 0
+  constructor(props) {
+    console.log('-- ImageLoaderApp.constructor(props) --');
+    super(props);
+    this.state = {
+      imageNames: []
+    }
   }
 
   // Fetch images after first mount
   componentDidMount() {
-    this.getImages();
-    this.timer = setInterval(this.tick, 3000);
+    console.log('-- ImageLoaderApp.componentDidMount() --');
+    this.getImageName();
   }
 
-  getImageArraySize() {
-    this.state.images.length;
-  }
-
-  tick = () => {
-    this.setState({currentImageIndex: this.state.currentImageIndex + 1});
-    if (currentImageIndex >= this.state.images.length) {
-      this.setState({currentImageIndex: 0});
-    }
-  }
-
-  getImages = () => {
+  getImageName = () => {
+    console.log('-- ImageLoaderApp.getImageName() --');
     // Get the images and store them in state
     fetch('/api/images')
       .then(response => response.json())
       .then(json => {
         console.log(json);
-        this.setState({ images: json })
+        this.setState({imageNames: json});
       })
   }
 
-  render() {
-    var imageCount = 0;
-    var imageSetCount = 0;
-    
-    const imageArray = this.state.images.map(image => {
-      var highRes = require('../../assets/images/highRes/' + image);
-      var lowRes = require('../../assets/images/lowRes/lowRes_' + image);
-      var imageSetDisplaySetting = imageSetCount == 0 ? 'inline' : 'inline';
-      imageSetCount += 1;
+  render() {    
+    console.log('-- ImageLoaderApp.render() --');
+    let highResImages = [];
+    let lowResImages = [];
 
-      return (
-        <ImageLoader
-          highResId={'highRes_' + imageSetCount}
-          highResZIndex={imageCount += 1}
-          highResDisplay={imageSetDisplaySetting}
-          highResUrl={highRes} 
-          lowResId={'lowRes_' + imageSetCount}
-          lowResZIndex={imageCount += 1}
-          lowResDisplay={imageSetDisplaySetting}
-          lowResUrl={lowRes} 
-        />
-      );
+    this.state.imageNames.map(imageName => {
+      let highResImageUrl = require('../../assets/images/highRes/' + imageName);
+      highResImages.push(highResImageUrl);
+      console.log(highResImages);
+
+      let lowResImageUrl = require('../../assets/images/lowRes/lowRes_' + imageName);
+      lowResImages.push(lowResImageUrl);
+      console.log(lowResImages);
     });
-
+            
     return (
       <div>
-        <CSSTransitionGroup 
-          transitionName="imageLoader"
-          transitionEnterTimeout={500} 
-          transitionLeaveTimeout={300}
-        >
-          {imageArray}
-        </CSSTransitionGroup>
+        <ImageLoaderTest highResImages={highResImages} lowResImages={lowResImages} />
       </div>
     );
   }
