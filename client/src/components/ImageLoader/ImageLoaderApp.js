@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ImageLoaderTest from "./ImageLoaderTest";
+import ImageLoader from "./ImageLoader";
 
 class ImageLoaderApp extends Component {
 
@@ -11,14 +11,21 @@ class ImageLoaderApp extends Component {
     }
   }
 
-  // Fetch images after first mount
+  /**
+   * Fetch the images after first mount.
+   */
   componentDidMount() {
     console.log('-- ImageLoaderApp.componentDidMount() --');
+
     this.getImageName();
   }
 
+  /**
+   * 
+   */
   getImageName = () => {
     console.log('-- ImageLoaderApp.getImageName() --');
+
     // Get the images and store them in state
     fetch('/api/images')
       .then(response => response.json())
@@ -44,9 +51,7 @@ class ImageLoaderApp extends Component {
     });
             
     return (
-      <div>
-        <ImageLoaderTest highResImages={highResImages} lowResImages={lowResImages} />
-      </div>
+      <ImageLoader highResImages={highResImages} lowResImages={lowResImages} />
     );
   }
 }
