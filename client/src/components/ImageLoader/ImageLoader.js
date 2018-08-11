@@ -1,5 +1,6 @@
 /**
  * client/src/components/ImageLoader/ImageLoader.js
+ * @author <ericwaidesign@gmail.com>
  */
 
 import React, { Component } from 'react';
@@ -23,7 +24,6 @@ const CONSTANT = {
 /**
  * @description This class loads the given images and apply 
  * cross fade transition effect between photos.
- * @author <ericwaidesign@gmail.com>
  */
 class ImageLoader extends Component {
 
@@ -122,11 +122,11 @@ class ImageLoader extends Component {
    * parameters (props) passed during instantiation.
    */
   setState() {
-    if (this.state.highResImages.length == 0) { 
+    if (this.state.highResImages.length === 0) { 
       this.state.highResImages = this.props.highResImages; 
       console.log(this.state.highResImages);
     }
-    if (this.state.lowResImages.length == 0) { 
+    if (this.state.lowResImages.length === 0) { 
       this.state.lowResImages = this.props.lowResImages;
       console.log(this.state.lowResImages);
     }
