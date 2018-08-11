@@ -5,16 +5,10 @@
 import React, { Component } from 'react';
 import ImageLoader from "./ImageLoader";
 
-const CONSTANT = {
-  API_IMAGE_PATH: '/api/images',
-  HIGH_RES_IMG_PATH: '../../assets/images/highRes/',
-  LOW_RES_IMG_PATH: '../../assets/images/lowRes/lowRes_'
-};
-
 /**
  * @description This class retrieves a list of images to be 
  * output from the ImageLoader class.
- * @author ERIC WAI <ericwaidesign@gmail.com>
+ * @author <ericwaidesign@gmail.com>
  */
 class ImageLoaderApp extends Component {
 
@@ -45,7 +39,7 @@ class ImageLoaderApp extends Component {
     console.log('-- ImageLoaderApp.getImageName() --');
 
     // Get the images and store them in state
-    fetch(CONSTANT.API_IMAGE_PATH)
+    fetch('/api/images')
       .then(response => response.json())
       .then(json => {
         console.log(json);
@@ -65,10 +59,10 @@ class ImageLoaderApp extends Component {
     let lowResImages = [];
 
     this.state.imageNames.map(imageName => {
-      let highResImageUrl = require(CONSTANT.LOW_RES_IMG_PATH + imageName);
+      let highResImageUrl = require('../../assets/images/highRes/' + imageName);
       highResImages.push(highResImageUrl);
 
-      let lowResImageUrl = require(CONSTANT.HIGH_RES_IMG_PATH + imageName);
+      let lowResImageUrl = require('../../assets/images/lowRes/lowRes_' + imageName);
       lowResImages.push(lowResImageUrl);
     });
             

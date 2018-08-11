@@ -23,7 +23,7 @@ const CONSTANT = {
 /**
  * @description This class loads the given images and apply 
  * cross fade transition effect between photos.
- * @author ERIC WAI <ericwaidesign@gmail.com>
+ * @author <ericwaidesign@gmail.com>
  */
 class ImageLoader extends Component {
 
