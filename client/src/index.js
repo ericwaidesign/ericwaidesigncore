@@ -1,3 +1,8 @@
+/**
+ * client/src/index.js
+ * @author ERIC WAI <ericwaidesign@gmail.com>
+ */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './assets/css/index.css';

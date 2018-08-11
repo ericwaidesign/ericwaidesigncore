@@ -1,3 +1,7 @@
+/**
+ * client/src/components/ImageLoader/ImageLoaderApp.js
+ */
+
 import React, { Component } from 'react';
 import ImageLoader from "./ImageLoader";
 
