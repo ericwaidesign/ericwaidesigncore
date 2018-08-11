@@ -17,7 +17,9 @@ const CONSTANT = {
 };
 
 /**
- * 
+ * @description This class loads the given images and apply 
+ * cross fade transition effect between photos.
+ * @author ERIC WAI <ericwaidesign@gmail.com>
  */
 class ImageLoader extends Component {
 
@@ -34,10 +36,10 @@ class ImageLoader extends Component {
   }
 
   /**
-   * Set the timeout with the given interval of time 
-   * (timeoutDuration) after the component is mounted (inserted 
-   * into the tree). Initialize the transition after the given 
-   * interval of time.
+   * @description Set the timeout with the given interval of 
+   * time (timeoutDuration) after the component is mounted 
+   * (inserted into the tree). Initialize the transition after 
+   * the given interval of time.
    */
   componentDidMount() {
     console.log('-- ImageLoader.componentDidMount() --');
@@ -49,8 +51,8 @@ class ImageLoader extends Component {
   }
 
   /**
-   * Set the CSS class name in state to trigger a re-render 
-   * to update a DOM element's opacity setting to 0.
+   * @description Set the CSS class name in state to trigger a 
+   * re-render to update a DOM element's opacity setting to 0.
    */
   setLowResImgOpacityTo0 = () => {
     console.log('-- ImageLoader.imageLoaderHandler() --');
@@ -60,7 +62,7 @@ class ImageLoader extends Component {
   }
 
   /**
-   * Initialize the cross fade transition.
+   * @description Initialize the cross fade transition.
    */
   initialTransition() {
     console.log('-- ImageLoader.initialTransition() --');
@@ -100,7 +102,8 @@ class ImageLoader extends Component {
   }
 
   /**
-   * Set the styles for the given DOM element (lastImageContainer).
+   * @description Set the styles for the given DOM element 
+   * (lastImageContainer).
    * @param {*} lastImageContainer the DOM element that 
    * contains the last set of images in the container.
    * @param {*} opacity the opacity value to be set.
@@ -111,8 +114,8 @@ class ImageLoader extends Component {
   }
 
   /**
-   * Update state with the data from the creation parameters 
-   * (props) passed during instantiation.
+   * @description Update state with the data from the creation 
+   * parameters (props) passed during instantiation.
    */
   setState() {
     if (this.state.highResImages.length == 0) { 
@@ -126,10 +129,10 @@ class ImageLoader extends Component {
   }
 
   /**
-   * Output each set of images. Each set include a low resolution
-   * image for used as placeholder and a high resolution image. 
-   * The opacity of the low resolution image will be set to 0
-   * upon onLoad of the high resolution image. 
+   * @description Output each set of images. Each set include a 
+   * low resolution image for used as placeholder and a high 
+   * resolution image. The opacity of the low resolution image 
+   * will be set to 0 upon onLoad of the high resolution image. 
    */
   render() {
     console.log('-- ImageLoader.render() --');
@@ -169,7 +172,7 @@ class ImageLoader extends Component {
 }
 
 /**
- * Default static properties (props) values.
+ * @description Default static properties (props) values.
  */
 ImageLoader.defaultProps = {
   timeoutDuration: CONSTANT.FIVE_THOUSANDS_MILLISECS,
@@ -177,9 +180,9 @@ ImageLoader.defaultProps = {
 };
 
 /**
- * Type checks to validate the static properties (props)
- * which will be used by utility functions. These static
- * properties can be accessed without instantiate the 
+ * @description Type checks to validate the static properties 
+ * (props) which will be used by utility functions. These 
+ * static properties can be accessed without instantiate the 
  * class.
  */
 ImageLoader.propTypes = {
