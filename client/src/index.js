@@ -9,6 +9,9 @@ import './assets/css/index.css';
 import ImageLoaderApp from './components/ImageLoader/ImageLoaderApp';
 import registerServiceWorker from './registerServiceWorker';
 
+/* Render Top Bar Nav */
+ReactDOM.render(<TopNavBar />, document.getElementById('TopNavBarRoot'));
+
 /* Render ImageLoader component into DOM */
 ReactDOM.render(<ImageLoaderApp />, document.getElementById('ImageLoaderRoot'));
 
