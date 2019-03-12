@@ -6,6 +6,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './assets/css/index.css';
+import TopNavBar from './components/TopNavBar/TopNavBar';
 import ImageLoaderApp from './components/ImageLoader/ImageLoaderApp';
 import registerServiceWorker from './registerServiceWorker';
 
