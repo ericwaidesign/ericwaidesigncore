@@ -16,7 +16,7 @@ class TopNavBar extends Component {
     render() {
         console.log('-- TopNavBar.render() --');
 
-        const navBars = () => [
+        return(
             <div>
                 {/* mobile navigation bar */}
                 <div class="title-bar topbar-center-logo-mobile" data-responsive-toggle="topbar-center-logo" data-hide-for="medium">
@@ -35,10 +35,6 @@ class TopNavBar extends Component {
                     </div>
                 </div>
             </div>
-        ];
-
-        return(
-            {navBars}
         );   
     }
 }
