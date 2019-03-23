@@ -4,19 +4,29 @@
 'use strict'
 
 // Load the module dependencies
-var fs = require('fs');
+const fs = require('fs');
 const path = require('path');
+// Load the module dependencies
+const Image = require('../models/Image');
 
-const imageDir = '../../client/src/assets/images/highRes/';
+const highResFolder = '../../client/src/assets/images/highRes/';
+const lowResFolder = '../../client/src/assets/images/lowRes/';
 
 /**
  * Resturns a list of file name in JSON format 
- * Returns Json, ex: ["GrabandGoCover_G1_HI.jpg", "GrabandGoCover_G2_HI.jpg"...
  */
 exports.getImages = function(request, response) {
-    var filePathList = [];
-    fs.readdirSync(path.join(__dirname, imageDir)).forEach(file => {
-        filePathList.push(file); 
+    let imageList = [];
+    const highResFolderPath = path.join(__dirname, highResFolder);
+    const lowResFolderPath = path.join(__dirname, lowResFolder);
+
+    fs.readdirSync(highResFolderPath).forEach(file => {
+        const highResPath = path.join(highResFolderPath, file);
+        const lowResPath = path.join(lowResFolderPath, file)
+        let newImage = new Image(file, highResPath, lowResPath);
+
+        imageList.push(newImage); 
     })
-    response.json(filePathList);
+    
+    response.json(imageList);
 };

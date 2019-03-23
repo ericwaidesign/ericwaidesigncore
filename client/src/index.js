@@ -6,15 +6,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './assets/css/index.css';
-import TopNavBar from './components/TopNavBar/TopNavBar';
-import ImageLoaderApp from './components/ImageLoader/ImageLoaderApp';
-import registerServiceWorker from './registerServiceWorker';
-
-/* Render Top Bar Nav */
-ReactDOM.render(<TopNavBar />, document.getElementById('TopNavBarRoot'));
+import App from './components/ImageLoader/ImageLoaderApp';
 
 /* Render ImageLoader component into DOM */
-ReactDOM.render(<ImageLoaderApp />, document.getElementById('ImageLoaderRoot'));
-
-// cache assets for offline or slow network
-registerServiceWorker();
+ReactDOM.render(<App />, document.getElementById('SimpleImageSliderRoot'));

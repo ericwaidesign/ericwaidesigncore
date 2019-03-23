@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react';
-import ImageLoader from "./ImageLoader";
+import ImageLoader from "simple-image-slider";
 
 /**
  * @description This class retrieves a list of images to be 
