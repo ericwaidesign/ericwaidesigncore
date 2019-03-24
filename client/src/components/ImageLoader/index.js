@@ -127,7 +127,9 @@ class ImageSlider extends Component {
     /* Output each set of images */
     var imageArray = highResImages.map((highResImage, index) => {
       return (
-        <div id={`${Constants.IMAGE_CONTAINER}${index}`}>
+        <div 
+          id={`${Constants.IMAGE_CONTAINER}${index}`}
+          key={`${Constants.IMAGE_CONTAINER}${index}`}>
           {/* Low res placeholder image */}
           <img
             id={`${Constants.LOW_RES}${index}`}
