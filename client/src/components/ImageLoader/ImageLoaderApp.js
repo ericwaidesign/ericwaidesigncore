@@ -1,9 +1,12 @@
 /**
- * client/src/components/ImageLoader/ImageLoaderApp.js
+ * ericwaidesigncore\client\src\components\ImageLoader\ImageLoaderApp.js
+ * @author <ericwaidesign@gmail.com>
  */
 
+'use strict'
+
 import React, { Component } from 'react';
-import ImageLoader from "simple-image-slider";
+import ImageLoader from "./index";
 
 /**
  * @description This class retrieves a list of images to be 
@@ -17,9 +20,9 @@ class ImageLoaderApp extends Component {
 
     super(props);
 
-    // stores the retrieved image names
+    // stores the retrieved image objects
     this.state = {
-      imageNames: []
+      images: []
     }
   }
 
@@ -29,21 +32,21 @@ class ImageLoaderApp extends Component {
   componentDidMount() {
     console.log('-- ImageLoaderApp.componentDidMount() --');
 
-    this.getImageName();
+    this.getImage();
   }
 
   /**
    * @description Retrieve a list of images and set them to state.
    */
-  getImageName = () => {
-    console.log('-- ImageLoaderApp.getImageName() --');
+  getImage = () => {
+    console.log('-- ImageLoaderApp.getImage() --');
 
     // Get the images and store them in state
     fetch('/api/images')
       .then(response => response.json())
       .then(json => {
         console.log(json);
-        this.setState({imageNames: json});
+        this.setState({images: json});
       })
   }
 
@@ -58,12 +61,9 @@ class ImageLoaderApp extends Component {
     let highResImages = [];
     let lowResImages = [];
 
-    this.state.imageNames.map(imageName => {
-      let highResImageUrl = require('../../assets/images/highRes/' + imageName);
-      highResImages.push(highResImageUrl);
-
-      let lowResImageUrl = require('../../assets/images/lowRes/lowRes_' + imageName);
-      lowResImages.push(lowResImageUrl);
+    this.state.images.map(image => {
+      highResImages.push(image.highResPath);
+      lowResImages.push(image.lowResPath);
     });
             
     return (
