@@ -1,5 +1,5 @@
 /**
- * ericwaidesigncore\client\src\components\ImageLoader\ImageLoaderApp.js
+ * ericwaidesigncore\client\src\components\ImageLoader\App.js
  * @author <ericwaidesign@gmail.com>
  */
 
@@ -9,7 +9,6 @@ import ImageLoader from "simple-image-slider";
 /**
  * @description This class retrieves a list of images to be 
  * output from the ImageLoader class.
- * @author <ericwaidesign@gmail.com>
  */
 class ImageLoaderApp extends Component {
 
