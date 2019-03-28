@@ -12,37 +12,40 @@ const HIGH_RES_IMG_FOLDER_PATH = '../../client/src/assets/images/highRes/';
 const LOW_RES_IMG_FOLDER_PATH = '../../client/src/assets/images/lowRes/';
 
 // used for constructing the paths to be used by the client
-const HIGH_RES_IMG_FILE_PATH = '../../assets/images/highRes/';
-const LOW_RES_IMG_FILE_PATH = '../../assets/images/lowRes/lowRes_';
+const HIGH_RES_IMG_FILE_PATH = 'images/highRes/';
+const LOW_RES_IMG_FILE_PATH = 'images/lowRes/';
 
 /**
  * Resturns a list of file name in JSON format 
  */
 exports.getImages = function (request, response) {
     let images = [];
-    let highResFiles = new Map();
-    let lowResFiles = new Map();
+    let highResFileMap = new Map();
+    let lowResFileMap = new Map();
 
     const highResFolderPath = path.join(__dirname, HIGH_RES_IMG_FOLDER_PATH);
     const lowResFolderPath = path.join(__dirname, LOW_RES_IMG_FOLDER_PATH);
 
     fs.readdirSync(highResFolderPath).forEach(file => {
-        const highResPath = path.join(HIGH_RES_IMG_FILE_PATH, file);
-        highResFiles.set(file, highResPath);
+        const highResPath = HIGH_RES_IMG_FILE_PATH;
+        highResFileMap.set(file, highResPath);
     });
     fs.readdirSync(lowResFolderPath).forEach(file => {
-        const lowResPath = path.join(LOW_RES_IMG_FILE_PATH, file)
-        lowResFiles.set(file, lowResPath);
+        const lowResPath = LOW_RES_IMG_FILE_PATH;
+        lowResFileMap.set(file, lowResPath);
     });
 
-    if (highResFiles.length == lowResFiles.length) {
-        const keys = Object.keys(highResFiles);
+    if (highResFileMap.length == lowResFileMap.length) {
+        const highResKeyArray = [...highResFileMap.keys()];
+        const lowResKeyArray = [...lowResFileMap.keys()];
+        const highResFileArray = [...highResFileMap.values()];
+        const lowResFileArray = [...lowResFileMap.values()];
+        console.log(highResKeyArray.length + " " + lowResKeyArray.length + " " + highResFileArray.length + " " + lowResFileArray.length);
 
-        keys.forEach((file, index) => {
-            let image = new Image(file, highResPath[index], lowResPath[index]);
+        highResKeyArray.forEach((highResFileName, index) => {
+            let image = new Image(highResFileName, lowResKeyArray[index], highResFileArray[index], lowResFileArray[index]);
+            images.push(image);
         });
-        
-        images.push(image);
     } else {
         console.log("Error: number of high res files does not match the number of low res files");
     }

@@ -1,8 +1,9 @@
 // Invoke 'strict' JavaScript mode
 'use strict'
 
-function Image(fileName, highResPath, lowResPath) {
-  this.fileName = fileName;
+function Image(highRestFileName, lowResFileName, highResPath, lowResPath) {
+  this.highRestFileName = highRestFileName;
+  this.lowResFileName = lowResFileName;
   this.highResPath = highResPath;
   this.lowResPath = lowResPath;
 }

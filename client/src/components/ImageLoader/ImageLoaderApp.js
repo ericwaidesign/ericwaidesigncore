@@ -3,10 +3,8 @@
  * @author <ericwaidesign@gmail.com>
  */
 
-'use strict'
-
 import React, { Component } from 'react';
-import ImageLoader from "./index";
+import ImageLoader from "simple-image-slider";
 
 /**
  * @description This class retrieves a list of images to be 
@@ -62,8 +60,11 @@ class ImageLoaderApp extends Component {
     let lowResImages = [];
 
     this.state.images.map(image => {
-      highResImages.push(image.highResPath);
-      lowResImages.push(image.lowResPath);
+      var highRes = require('../../assets/' + image.highResPath + image.highRestFileName);
+      var lowRes = require('../../assets/' + image.lowResPath + image.lowResFileName);
+
+      highResImages.push(highRes);
+      lowResImages.push(lowRes);
     });
             
     return (
