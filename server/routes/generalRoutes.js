@@ -7,25 +7,17 @@ const path = require('path');
 
 const imageController = require('../controllers/image');
 
-/* 
+/*
  * Module initialization
  */
 module.exports = function(app) {
 
     // Serve any static files
     app.use(express.static(path.join(__dirname, '../../client/build')));
- 
+
     // Handle React routing, return all requests to React app
     app.get('/api/hello', (req, res) => {
         res.send({ express: 'Hello From Express' });
-    });
-
-    /**
-    * HTTP GET /api/images
-    * Returns: the list of file name in JSON format
-    */
-    app.get('/api/images', (req, res) => {
-        imageController.getImages(req, res);
     });
 
     // The "catchall" handler: for any request that doesn't

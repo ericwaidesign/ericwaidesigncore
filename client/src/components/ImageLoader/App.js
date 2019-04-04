@@ -6,8 +6,9 @@
 import React, { Component } from 'react';
 import ImageLoader from "simple-image-slider";
 
+
 /**
- * @description This class retrieves a list of images to be 
+ * @description This class retrieves a list of images to be
  * output from the ImageLoader class.
  */
 class ImageLoaderApp extends Component {
@@ -48,11 +49,11 @@ class ImageLoaderApp extends Component {
   }
 
   /**
-   * @description Construct the paths to the low resolution 
-   * images and to the high resolution images. Call the 
+   * @description Construct the paths to the low resolution
+   * images and to the high resolution images. Call the
    * ImageLoader component with the given paths.
    */
-  render() {    
+  render() {
     console.log('-- ImageLoaderApp.render() --');
 
     let highResImages = [];
@@ -65,7 +66,7 @@ class ImageLoaderApp extends Component {
       highResImages.push(highRes);
       lowResImages.push(lowRes);
     });
-            
+
     return (
       /* Output ImageLoader component */
       <ImageLoader highResImages={highResImages} lowResImages={lowResImages} />
