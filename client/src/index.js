@@ -6,6 +6,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ImageLoaderApp from './components/ImageLoader/App';
+import ChatUIApp from './components/ChatUI/App';
 import registerServiceWorker from './registerServiceWorker';
 
 import './assets/css/index.css';
@@ -14,7 +15,7 @@ import './assets/css/index.css';
 ReactDOM.render(<ImageLoaderApp />, document.getElementById('ImageLoaderRoot'));
 
 /* Render ChatUI component into DOM */
-// ReactDOM.render(<ChatUI />, document.getElementById('ChatUIRoot'));
+// ReactDOM.render(<ChatUIApp />, document.getElementById('ChatUIRoot'));
 
 // cache assets for offline or slow network
 registerServiceWorker();

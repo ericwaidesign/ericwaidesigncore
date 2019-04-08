@@ -3,13 +3,17 @@
  * @author <ericwaidesign@gmail.com>
  */
 
+import React, { Component } from 'react';
+
 /**
- * @description This class retrieves a list of images to be 
- * output from the ImageLoader class.
+ * @description
  */
 class ChatUIApp extends Component {
     render() {
-        
+        return(
+            <div>
+            </div>
+        );
     }
 }
 
