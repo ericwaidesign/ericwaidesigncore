@@ -13,7 +13,7 @@ exports.register = app => {
             return fs.statSync(`${Module}/${dir}`).isDirectory();
         })
         .forEach(dir => {
-            const file = require(path.resolve(`./module/${dir}/routes/routes`));
+            const file = require(path.resolve(`./module/${dir}/${dir}.routes.js`));
             app.use(file.base, file.router);
         });
 };
