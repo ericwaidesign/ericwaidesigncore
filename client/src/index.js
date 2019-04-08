@@ -14,7 +14,7 @@ import './assets/css/index.css';
 ReactDOM.render(<ImageLoaderApp />, document.getElementById('ImageLoaderRoot'));
 
 /* Render ChatUI component into DOM */
-ReactDOM.render(<ChatUI />, document.getElementById('ChatUIRoot'));
+// ReactDOM.render(<ChatUI />, document.getElementById('ChatUIRoot'));
 
 // cache assets for offline or slow network
 registerServiceWorker();

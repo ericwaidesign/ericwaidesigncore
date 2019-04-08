@@ -4,8 +4,8 @@
  */
 
 import React, { Component } from 'react';
-import ImageLoader from "simple-image-slider";
-
+import SimpleImageSlider from "simple-image-slider";
+import Image from "simple-image-slider/dist/Image";
 
 /**
  * @description This class retrieves a list of images to be
@@ -13,65 +13,77 @@ import ImageLoader from "simple-image-slider";
  */
 class ImageLoaderApp extends Component {
 
-  constructor(props) {
-    console.log('-- ImageLoaderApp.constructor(props) --');
+    constructor(props) {
+        super(props);
 
-    super(props);
-
-    // stores the retrieved image objects
-    this.state = {
-      images: []
+        // stores the retrieved image objects
+        this.state = {
+            images: []
+        }
     }
-  }
 
-  /**
-   * @description Retrieve the images after first mount.
-   */
-  componentDidMount() {
-    console.log('-- ImageLoaderApp.componentDidMount() --');
+    /**
+     * @description Retrieve the images after first mount.
+     */
+    componentDidMount() {
+        this.getImages();
+    }
 
-    this.getImage();
-  }
+    /**
+     * @description Retrieve a list of images and set them to state.
+     */
+    getImages = () => {
+        // Get the images and store them in state
+        fetch('/api/images')
+            .then(response => response.json())
+            .then(json => {
+                console.log(json);
+                this.setData(json);
+            })
+    }
 
-  /**
-   * @description Retrieve a list of images and set them to state.
-   */
-  getImage = () => {
-    console.log('-- ImageLoaderApp.getImage() --');
+    setData = (json) => {
+        const imageArray = [];
+        json.forEach((imageData) => {
+            imageArray.push(
+                new Image(
+                    imageData.highRestFileName, 
+                    require("../../assets/" + imageData.highResPath + imageData.highRestFileName), 
+                    imageData.lowResFileName, 
+                    require("../../assets/" + imageData.lowResPath + imageData.lowResFileName)
+                )
+            );
+        });
 
-    // Get the images and store them in state
-    fetch('/api/images')
-      .then(response => response.json())
-      .then(json => {
-        console.log(json);
-        this.setState({images: json});
-      })
-  }
+        this.setState({images: imageArray});
+    }
 
-  /**
-   * @description Construct the paths to the low resolution
-   * images and to the high resolution images. Call the
-   * ImageLoader component with the given paths.
-   */
-  render() {
-    console.log('-- ImageLoaderApp.render() --');
+    renderSimpleImageSlider() {
+        if (this.state.images.length !== 0) {
+            const params = {
+                images: this.state.images,
+                timeoutDuration: 5000,
+                transitionDuration: 1000
+            }
 
-    let highResImages = [];
-    let lowResImages = [];
+            return (
+                <SimpleImageSlider params={params} />
+            )
+        }
+    }
 
-    this.state.images.map(image => {
-      var highRes = require('../../assets/' + image.highResPath + image.highRestFileName);
-      var lowRes = require('../../assets/' + image.lowResPath + image.lowResFileName);
-
-      highResImages.push(highRes);
-      lowResImages.push(lowRes);
-    });
-
-    return (
-      /* Output ImageLoader component */
-      <ImageLoader highResImages={highResImages} lowResImages={lowResImages} />
-    );
-  }
+    /**
+     * @description Construct the paths to the low resolution
+     * images and to the high resolution images. Call the
+     * ImageLoader component with the given paths.
+     */
+    render() {
+        return (
+            <div>
+                {this.renderSimpleImageSlider()}
+            </div>
+        );
+    }
 }
 
 export default ImageLoaderApp;
