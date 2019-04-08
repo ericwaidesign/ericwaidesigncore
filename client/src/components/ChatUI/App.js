@@ -3,6 +3,8 @@
  * @author <ericwaidesign@gmail.com>
  */
 
+import React, { Component } from 'react';
+
 /**
  * @description
  */

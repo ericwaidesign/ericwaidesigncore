@@ -1,6 +1,5 @@
 // server/controllers/image.js
 
-// Invoke 'strict' JavaScript mode
 'use strict'
 
 const fs = require('fs');
@@ -28,16 +27,12 @@ exports.getImages = function(request, response) {
 
     const highResFiles = fs.readdirSync(highResFolderPath);
     highResFiles.forEach((fileName) => {
-        const newFileName = general.getFileNameWithoutExtension(fileName);
-        const newFilePath = general.joinPaths(HIGH_RES_IMG_FILE_PATH, fileName);
-        highResFileMap.set(newFileName, HIGH_RES_IMG_FILE_PATH);
+        highResFileMap.set(fileName, HIGH_RES_IMG_FILE_PATH);
     });
 
     const lowResFiles = fs.readdirSync(lowResFolderPath);
     lowResFiles.forEach((fileName) => {
-        const newFileName = general.getFileNameWithoutExtension(fileName);
-        const newFilePath = general.joinPaths(LOW_RES_IMG_FILE_PATH, fileName);
-        lowResFileMap.set(newFileName, newFilePath);
+        lowResFileMap.set(fileName, LOW_RES_IMG_FILE_PATH);
     });
 
     if (highResFileMap.length == lowResFileMap.length) {
