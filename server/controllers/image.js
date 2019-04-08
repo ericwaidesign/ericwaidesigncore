@@ -1,6 +1,5 @@
 // server/controllers/image.js
 
-// Invoke 'strict' JavaScript mode
 'use strict'
 
 const fs = require('fs');
