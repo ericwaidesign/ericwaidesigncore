@@ -60,12 +60,16 @@ class ImageLoaderApp extends Component {
     let lowResImages = [];
 
     this.state.images.map(image => {
-      var highRes = require('../../assets/' + image.highResPath + image.highRestFileName);
-      var lowRes = require('../../assets/' + image.lowResPath + image.lowResFileName);
 
-      highResImages.push(highRes);
-      lowResImages.push(lowRes);
     });
+
+    // this.state.images.map(image => {
+    //   var highRes = require('../../assets/' + image.highResPath + image.highRestFileName);
+    //   var lowRes = require('../../assets/' + image.lowResPath + image.lowResFileName);
+
+    //   highResImages.push(highRes);
+    //   lowResImages.push(lowRes);
+    // });
 
     return (
       /* Output ImageLoader component */

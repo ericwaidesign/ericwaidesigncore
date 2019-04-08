@@ -1,22 +1,29 @@
-// Invoke 'strict' JavaScript mode
-'use strict'
+"use strict"
 
-// Set environment variable ('production' or 'development')
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+const express = require("express");
+// create instance of express, initialize express app
+const app = express();
+const server = require("http").createServer(app);
+const path = require("path");
+const Routes = require("./routes");
+const db = require("./database");
+const Express = require("./express");
+const Config = require("./configs");
 
-// Load the module dependencies
-var app = require('./configs/express')(); // initializes module
-var http = require('http');
+const config = Config.getConfig();
 
-// set environment specific configs into Express instance
-var config = require('./configs/general');
-var port = process.env.PORT || config.port;
-app.set('port', port);
-
-// Create HTTP server
-var server = http.createServer(app);
-
-// Listen on provided port, on all network interfaces.
-server.listen(port, function() {
-    console.log('Listening on port ' + port);
+// start server
+server.listen(config.PORT, function() {
+    console.log('Listening on port ' + config.PORT);
 });
+
+// initialize express
+Express.init(app);
+
+// connect Mongodb
+db.connectMongoDB(config);
+
+// register routes
+Routes.register(app);
+
+module.exports = app;
