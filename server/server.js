@@ -4,7 +4,6 @@ const express = require("express");
 // create instance of express, initialize express app
 const app = express();
 const server = require("http").createServer(app);
-const path = require("path");
 const Routes = require("./routes");
 const db = require("./database");
 const Express = require("./express");
