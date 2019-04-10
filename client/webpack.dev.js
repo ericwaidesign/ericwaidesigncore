@@ -9,6 +9,6 @@ module.exports = merge(common, {
     mode: 'development',
     devtool: 'inline-source-map',
     devServer: {
-        port: 9000
+        port: 9001
     }
 });

@@ -33,7 +33,7 @@ class ImageLoaderApp extends Component {
      */
     getImages = () => {
         // Get the images and store them in state
-        fetch('/api/images')
+        fetch('/api/image')
             .then(response => response.json())
             .then(json => {
                 console.log(json);
