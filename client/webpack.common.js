@@ -1,19 +1,29 @@
 /**
+ * Webpack configure to package and bundle the js code. 
+ * 
  * @author <ericwaidesign@gmail.com>
  */
 
 const path = require('path');
+
+// create index.html automatically with the script tag src='app.bundle.js
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+// HtmlWebpackPlugin configuration 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-    template: path.join(__dirname, "./examples/src/index.html"),
-    filename: "index.html"
+    hash: true,
+    title: "ericwaidesign", // index.html title
+    template: "./src/index.html",
+    filename: "./dist/index.html",
+    component1: "TopNavBarRoot",
+    component2: "ImageLoaderRoot"
 })
 
 module.exports = {
-    entry: path.join(__dirname, "./examples/src/app.js"),
+    // all the paths are relative to the root of the app
+    entry: "./src/index.js",
     output: {
-        filename: 'index.js',
-        path: path.resolve(__dirname, 'dist')
+        filename: 'app.bundle.js',
+        path: path.resolve(__dirname, './dist')
     },
     watch: true,
     module: {
