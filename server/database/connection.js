@@ -17,23 +17,33 @@ module.exports = (config) => {
     );
 
     /* if connection established */
-    mongoose.connections.on("connect", () => {
+    mongoose.connection.on("connected", () => {
         console.log(
-            chalk`{green Successfully connected to mongDB {green.bold ${config.DB.MONGODB}}}`
+            chalk`{green Mongoose connection opens {green.bold ${config.DB.MONGODB}}}`
         );
     });
 
     /* if connection failed */
-    mongoose.connections.on("error", err => {
+    mongoose.connection.on("error", err => {
         console.error(
-            chalk`{red Failed to connect to mongodb: {red bold ${config.DB.MONGODB}, ${err}}}`
+            chalk`{red Mongoose connection error: {red bold ${config.DB.MONGODB}, ${err}}}`
         );
     });
 
     /* if connection disconnected */
-    mongoose.connections.on("disconnected", err => {
+    mongoose.connection.on("disconnected", err => {
         console.error(
-            chalk`{red Connection to mongodb: {red.bold ${config.DB.MONGODB}} disconnected}`
+            chalk`{red Mongoose connection: {red.bold ${config.DB.MONGODB}} disconnected}`
         );
+    });
+
+    /* close Mongoose connection if Node process ends */
+    mongoose.connection.on("SIGINT", () => {
+        mongoose.connection.close(() => {
+            console.log(
+                chalk`{yellow Mongoose connection disconnected through app termination {yellow.bold ${config.DB.MONGODB}}}`
+            );
+        });
+        process.exit(0);
     });
 }

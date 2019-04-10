@@ -3,17 +3,26 @@
 /**
  * modules/image/image.routes.js
  * 
- * @description All routes with "/api/images" come through here.
+ * @description All routes with "/api/image" come through here.
  */
 
-const router = require("express").Router;
+const express = require("express");
 const ImageController = require("./controller")
 
-/**
- * HTTP GET /api/images
- * Returns: the list of file name in JSON format
- */
-router
-    .get("/api/images", ImageController.getImages);
+const apiRoutes = express.Router();
+const imageRoutes = express.Router();
 
-module.exports = router;
+// Image Routes
+apiRoutes.use("/image", imageRoutes);
+
+/**
+ * @description HTTP GET /api/image
+ * @returns {JSON} - the list of file name in JSON format
+ */
+imageRoutes.route("/")
+    .get(ImageController.getImages);
+
+module.exports = {
+    router: apiRoutes,
+    base: "/api"
+};

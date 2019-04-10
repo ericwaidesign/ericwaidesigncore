@@ -10,7 +10,7 @@ exports.init = (app) => {
     // =======================================================
 
     // secure Express app with various HTTP headers
-    app.use(helmet);
+    app.use(helmet());
 
     // parse application/x-www-form-urlencoded
     //  parse incoming JSON form data POST requests into req.body obj

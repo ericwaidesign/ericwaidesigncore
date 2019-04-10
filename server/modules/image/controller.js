@@ -1,8 +1,8 @@
 "use strict"
 
 const fs = require("fs");
-const general = require("../utils/general");
-const Image = require("../models/Image");
+const general = require("../../utils/general");
+const Image = require("./model");
 
 // pathes to the images
 const HIGH_RES_IMG_FOLDER_PATH = "../../client/src/assets/images/highRes/";

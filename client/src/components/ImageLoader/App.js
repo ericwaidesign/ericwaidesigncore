@@ -1,5 +1,4 @@
 /**
- * ericwaidesigncore\client\src\components\ImageLoader\App.js
  * @author <ericwaidesign@gmail.com>
  */
 
@@ -42,39 +41,20 @@ class ImageLoaderApp extends Component {
             })
     }
 
-<<<<<<< HEAD
-    this.state.images.map(image => {
-
-    });
-
-    // this.state.images.map(image => {
-    //   var highRes = require('../../assets/' + image.highResPath + image.highRestFileName);
-    //   var lowRes = require('../../assets/' + image.lowResPath + image.lowResFileName);
-
-    //   highResImages.push(highRes);
-    //   lowResImages.push(lowRes);
-    // });
-
-    return (
-      /* Output ImageLoader component */
-      <ImageLoader highResImages={highResImages} lowResImages={lowResImages} />
-    );
-  }
-=======
     setData = (json) => {
         const imageArray = [];
         json.forEach((imageData) => {
             imageArray.push(
                 new Image(
-                    imageData.highRestFileName, 
-                    require("../../assets/" + imageData.highResPath + imageData.highRestFileName), 
-                    imageData.lowResFileName, 
+                    imageData.highRestFileName,
+                    require("../../assets/" + imageData.highResPath + imageData.highRestFileName),
+                    imageData.lowResFileName,
                     require("../../assets/" + imageData.lowResPath + imageData.lowResFileName)
                 )
             );
         });
 
-        this.setState({images: imageArray});
+        this.setState({ images: imageArray });
     }
 
     renderSimpleImageSlider() {
@@ -103,7 +83,6 @@ class ImageLoaderApp extends Component {
             </div>
         );
     }
->>>>>>> 7365bb950458eb106a1cf96a97136718a5af7434
 }
 
 export default ImageLoaderApp;
