@@ -17,9 +17,6 @@ const LOW_RES = "lowRes_";
  */
 exports.getImages = function(request, response) {
     const images = [];
-    const highResFileMap = new Map();
-    const lowResFileMap = new Map();
-
     const imgFolderPath = general.getRelativePath(IMG_FOLDER_PATH);
 
     const files = fs.readdirSync(imgFolderPath);
@@ -42,6 +39,6 @@ exports.getImages = function(request, response) {
             images.push(image);
         }
     });
-
+    console.log(images);
     response.json(images);
 };

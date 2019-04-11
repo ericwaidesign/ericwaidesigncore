@@ -25,26 +25,26 @@ class ImageLoaderApp extends Component {
      * @description Retrieve the images after first mount.
      */
     componentDidMount() {
-        this.getImages();
+        this.getImages(this.setData);
     }
 
     /**
      * @description Retrieve a list of images and set them to state.
      */
-    getImages = () => {
+    getImages = (callback) => {
         // Get the images and store them in state
         fetch('/api/images')
-            .then(response => response.json())
-            .then(json => {
-                console.log(json);
-                this.setData(json);
+            .then(function(response) {
+                return response.json();
             })
+            .then(function(myJson) {
+                callback(JSON.stringify(myJson));
+            });
     }
 
-    setData = (json) => {
-        const data = JSON.parse(json);
+    setData = (jsonData) => {
         const imageArray = [];
-        data.forEach((imageData) => {
+        jsonData.forEach((imageData) => {
             console.log(imageData);
             imageArray.push(
                 new Image(

@@ -26,7 +26,7 @@ exports.register = app => {
      * @description Serve any static files
      */
     app.use(
-        express.static(General.getRelativePath("../../client/dist")));
+        express.static(General.getRelativePath("../../client/src")));
 
     /**
      * @description The "catchall" handler: for any request
@@ -34,6 +34,6 @@ exports.register = app => {
      * index.html file.
      */
     app.get("/", (req, res) => {
-        res.sendFile(General.getRelativePath("../../client/dist/index.html"));
+        res.sendFile(General.getRelativePath("../../client/src/index.html"));
     });
 };
