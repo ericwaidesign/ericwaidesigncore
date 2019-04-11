@@ -17,7 +17,7 @@ class ImageLoaderApp extends Component {
 
         // stores the retrieved image objects
         this.state = {
-            images: []
+            imageData: []
         }
     }
 
@@ -25,20 +25,19 @@ class ImageLoaderApp extends Component {
      * @description Retrieve the images after first mount.
      */
     componentDidMount() {
-        this.getImages(this.setData);
+        this.getImages();
     }
 
     /**
      * @description Retrieve a list of images and set them to state.
      */
-    getImages = (callback) => {
+    getImages = () => {
         // Get the images and store them in state
         fetch('/api/images')
-            .then(function(response) {
-                return response.json();
-            })
-            .then(function(myJson) {
-                callback(JSON.stringify(myJson));
+            .then(response => response.json())
+            .then(data => {
+                // callback(data)
+                this.setState({ imageData: data });
             });
     }
 
@@ -60,9 +59,10 @@ class ImageLoaderApp extends Component {
     }
 
     renderSimpleImageSlider() {
-        if (this.state.images.length !== 0) {
+        if (this.state.imageData.length !== 0) {
+            const images = JSON.parse(this.state.imageData);
             const params = {
-                images: this.state.images,
+                images: images,
                 timeoutDuration: 5000,
                 transitionDuration: 1000
             }

@@ -4,11 +4,10 @@ const fs = require("fs");
 const general = require("../../utils/general");
 const Image = require("./model");
 
-// pathes to the images
-const IMG_FOLDER_PATH = "../../client/dist/assets/images/";
-
+// path to images folder
+const IMG_FOLDER_PATH = "../../client/public/assets/images/";
 // pathes for the client
-const IMG_RELATIVE_PATH = "images/";
+const IMG_RELATIVE_PATH = "./assets/images/";
 
 const LOW_RES = "lowRes_";
 
@@ -35,10 +34,13 @@ exports.getImages = function(request, response) {
                 }
             });
 
-            const image = new Image(highResFileName, IMG_RELATIVE_PATH, lowResFileName, IMG_RELATIVE_PATH);
+            const highResPath = IMG_RELATIVE_PATH + highResFileName;
+            const lowResPath = IMG_RELATIVE_PATH + lowResFileName;
+
+            const image = new Image(highResFileName, highResPath, lowResFileName, lowResPath);
             images.push(image);
         }
     });
-    console.log(images);
-    response.json(images);
+
+    response.json(JSON.stringify(images));
 };
