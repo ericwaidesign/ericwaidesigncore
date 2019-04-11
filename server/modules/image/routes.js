@@ -2,7 +2,7 @@
 
 /**
  * modules/image/image.routes.js
- * 
+ *
  * @description All routes with "/api/image" come through here.
  */
 
@@ -13,7 +13,7 @@ const apiRoutes = express.Router();
 const imageRoutes = express.Router();
 
 // Image Routes
-apiRoutes.use("/image", imageRoutes);
+apiRoutes.use("/images", imageRoutes);
 
 /**
  * @description HTTP GET /api/image

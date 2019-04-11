@@ -1,3 +1,7 @@
+/**
+ * @author <ericwaidesign@gmail.com>
+ */
+
 'use strict'
 
 /**

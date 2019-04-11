@@ -26,7 +26,7 @@ exports.register = app => {
      * @description Serve any static files
      */
     app.use(
-        express.static(General.getRelativePath("../../client/")));
+        express.static(General.getRelativePath("../../client/dist")));
 
     /**
      * @description The "catchall" handler: for any request

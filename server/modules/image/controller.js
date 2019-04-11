@@ -5,12 +5,12 @@ const general = require("../../utils/general");
 const Image = require("./model");
 
 // pathes to the images
-const HIGH_RES_IMG_FOLDER_PATH = "../../client/src/assets/images/highRes/";
-const LOW_RES_IMG_FOLDER_PATH = "../../client/src/assets/images/lowRes/";
+const IMG_FOLDER_PATH = "../../client/dist/assets/images/";
 
 // pathes for the client
-const HIGH_RES_IMG_FILE_PATH = "images/highRes/";
-const LOW_RES_IMG_FILE_PATH = "images/lowRes/";
+const IMG_RELATIVE_PATH = "images/";
+
+const LOW_RES = "lowRes_";
 
 /**
  * Resturns a list of file name in JSON format
@@ -20,33 +20,28 @@ exports.getImages = function(request, response) {
     const highResFileMap = new Map();
     const lowResFileMap = new Map();
 
-    const highResFolderPath = general.getRelativePath(HIGH_RES_IMG_FOLDER_PATH);
-    const lowResFolderPath = general.getRelativePath(LOW_RES_IMG_FOLDER_PATH);
+    const imgFolderPath = general.getRelativePath(IMG_FOLDER_PATH);
 
-    const highResFiles = fs.readdirSync(highResFolderPath);
-    highResFiles.forEach((fileName) => {
-        highResFileMap.set(fileName, HIGH_RES_IMG_FILE_PATH);
-    });
+    const files = fs.readdirSync(imgFolderPath);
+    files.forEach((fileName) => {
+        if (!fileName.includes(LOW_RES)) {
+            const highResFileName = fileName;
 
-    const lowResFiles = fs.readdirSync(lowResFolderPath);
-    lowResFiles.forEach((fileName) => {
-        lowResFileMap.set(fileName, LOW_RES_IMG_FILE_PATH);
-    });
+            // get the original file name by removing the hash
+            const fileNameWithoutHash = fileName.split("-")[1];
 
-    if (highResFileMap.length == lowResFileMap.length) {
-        const highResKeyArray = [...highResFileMap.keys()];
-        const lowResKeyArray = [...lowResFileMap.keys()];
-        const highResFileArray = [...highResFileMap.values()];
-        const lowResFileArray = [...lowResFileMap.values()];
+            // get the low res file name
+            let lowResFileName;
+            files.forEach((file) => {
+                if (file.includes(LOW_RES + fileNameWithoutHash)) {
+                    lowResFileName = file;
+                }
+            });
 
-        highResKeyArray.forEach((highResFileName, index) => {
-            // console.log(highResFileName + " " + lowResKeyArray[index] + " " + highResFileArray[index] + " " + lowResFileArray[index]);
-            const image = new Image(highResFileName, lowResKeyArray[index], highResFileArray[index], lowResFileArray[index]);
+            const image = new Image(highResFileName, IMG_RELATIVE_PATH, lowResFileName, IMG_RELATIVE_PATH);
             images.push(image);
-        });
-    } else {
-        console.log("Error: missing high resolution image(s) or low resolution images(s)");
-    }
+        }
+    });
 
     response.json(images);
 };

@@ -11,21 +11,25 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 // HtmlWebpackPlugin configuration
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
     template: "./src/index.html",
-    filename: "./index.html"
+    filename: "index.html"
 });
+
 // copy all the images from src to dist
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 // CopyWebpackPlugin configuration
-const CopyWebpackPluginConfig = new CopyWebpackPlugin({
-    from: "src/images"
-});
+const CopyWebpackPluginConfig = new CopyWebpackPlugin([{
+    from: "src/assets/images",
+    to: "assets/images"
+}]);
 
 module.exports = {
     // all the paths are relative to the root of the app
     entry: "./src/index.js",
     output: {
-        filename: 'app.bundle.js',
-        path: path.resolve(__dirname, './dist')
+        filename: "bundle.js",
+        // use resolve to create the absolute path needed
+        path: path.resolve(__dirname, "dist/"),
+        // publicPath: "/assets/"
     },
     watch: true,
     module: {
@@ -52,7 +56,7 @@ module.exports = {
                         // Convert images < 8kb to base64 strings, inlined in the code
                         // larger images will be passed to file-loader to process
                         limit: 8000,
-                        name: 'images/[hash]-[name].[ext]'
+                        name: 'assets/images/[hash]-[name].[ext]'
                     }
                 }]
             }

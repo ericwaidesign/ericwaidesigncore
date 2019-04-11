@@ -33,7 +33,7 @@ class ImageLoaderApp extends Component {
      */
     getImages = () => {
         // Get the images and store them in state
-        fetch('/api/image')
+        fetch('/api/images')
             .then(response => response.json())
             .then(json => {
                 console.log(json);
@@ -42,8 +42,10 @@ class ImageLoaderApp extends Component {
     }
 
     setData = (json) => {
+        const data = JSON.parse(json);
         const imageArray = [];
-        json.forEach((imageData) => {
+        data.forEach((imageData) => {
+            console.log(imageData);
             imageArray.push(
                 new Image(
                     imageData.highRestFileName,
@@ -53,7 +55,7 @@ class ImageLoaderApp extends Component {
                 )
             );
         });
-
+        console.log(imageArray);
         this.setState({ images: imageArray });
     }
 
