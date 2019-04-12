@@ -7,23 +7,23 @@ const express = require("express");
 // create instance of express, initialize express app
 const app = express();
 const server = require("http").createServer(app);
+const io = require('socket.io')(server);
 const Routes = require("./routes");
 const db = require("./database");
-const Express = require("./express");
-const Config = require("./configs");
+const Configs = require("./configs");
 
-const config = Config.getConfig();
+const configs = Configs.getConfig();
 
 // start server
-server.listen(config.PORT, function() {
-    console.log('Listening on port ' + config.PORT);
+server.listen(configs.PORT, function() {
+    console.log('Listening on port ' + configs.PORT);
 });
 
 // initialize express
-Express.init(app);
+Configs.initExpress(app);
 
 // connect Mongodb
-db.connectMongoDB(config);
+db.connectMongoDB(configs);
 
 // register routes
 Routes.register(app);
