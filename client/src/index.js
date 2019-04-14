@@ -6,7 +6,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ImageLoaderApp from './components/ImageLoader/App';
-import ChatUIApp from './components/ChatUI/App';
+import ChatApp from './components/Chat/App';
 
 import './assets/css/index.css';
 
@@ -14,4 +14,7 @@ import './assets/css/index.css';
 ReactDOM.render(<ImageLoaderApp />, document.getElementById('ImageLoaderRoot'));
 
 /* Render ChatUI component into DOM */
-// ReactDOM.render(<ChatUIApp />, document.getElementById('ChatUIRoot'));
+ReactDOM.render(
+    
+    <ChatApp />, document.getElementById('ChatRoot')
+);

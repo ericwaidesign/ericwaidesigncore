@@ -1,7 +1,4 @@
-'use strict';
-
-const path = require("path");
-const Express = require("./express");
+"use strict";
 
 module.exports = {
 
@@ -10,13 +7,6 @@ module.exports = {
      */
     getConfig: () => {
         return require(`./envs/config.${process.env.NODE_ENV}.js`);
-    },
-
-    /**
-     *
-     */
-    initExpress: (app) => {
-        return Express.init(app);
     }
 
 }

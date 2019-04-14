@@ -19,7 +19,8 @@
     "yarn": "1.9.2"
   },
   "devDependencies": {
-    "nodemon": "^1.18.1"
+    "nodemon": "^1.18.1",
+    "redux": "^4.0.1"
   },
   "scripts": {
     "preinstall": "npm install pm2 -g",
