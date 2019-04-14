@@ -1,30 +1,27 @@
 "use strict"
 
-// Set environment variable ('prod' or 'dev')
+// Set environment variable ("prod" or "dev")
 process.env.NODE_ENV = process.env.NODE_ENV || "dev";
 
-const express = require("express");
-const Express = require("./express");
-// create instance of express, initialize express app
-const app = express();
-const server = require("http").createServer(app);
-const webSocket = require("socket.io")(server);
 const Routes = require("./routes");
 const db = require("./database");
 const Configs = require("./configs");
-
 const configs = Configs.getConfig();
+
+const express = require("express");
+const Express = require("./express");
+const app = express(); // create instance of express, initialize express app
+const server = require("http").createServer(app);
+
+// create centralized server where users log into and talk to each other
+const WebSocket = require("ws");
+const wss = new WebSocket.Server({port: `${configs.PORT}`});
+const Wss = require("./wss");
+Wss.init(wss);
 
 // start server
 server.listen(configs.PORT, function () {
     console.log("Listening on port " + configs.PORT);
-});
-
-// listen on every connection
-webSocket.on("connection", (socket) => {
-    console.log(
-        chalk`{A client just joined on {green.bold ${socket.id}}}`
-    );
 });
 
 // initialize express
