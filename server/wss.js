@@ -1,7 +1,5 @@
 "use strict"
 
-const ws = require("ws");
-
 /**
  * Use the native WebSocket object in the browser, which is widely
  * supported and "ws" WebSocket library on the server.
@@ -67,17 +65,17 @@ exports.init = (wss) => {
                     break
             }
         });
-    });
 
-    /**
-     * @description On connection close, remove the user naem from
-     * the list and broadcast the new users list.
-     */
-    ws.on('close', () => {
-        users.splice(index, 1)
-        broadcast({
-            type: 'USERS_LIST',
-            users
-        }, ws)
+        /**
+         * @description On connection close, remove the user naem from
+         * the list and broadcast the new users list.
+         */
+        ws.on('close', () => {
+            users.splice(index, 1)
+            broadcast({
+                type: 'USERS_LIST',
+                users
+            }, ws)
+        });
     });
 };
