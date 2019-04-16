@@ -29,8 +29,8 @@ exports.init = (wss) => {
 
                 /**
                  * @description Add user event, "ADD_USER".
-                 * When client establishes the connection, send an ADD_USER event 
-                 * with the name, add it to the server-side list of users, and issue 
+                 * When client establishes the connection, send an ADD_USER event
+                 * with the name, add it to the server-side list of users, and issue
                  * a broadcast to the "users_list" for all the connected clients.
                  */
                 case 'ADD_USER': {
@@ -50,7 +50,7 @@ exports.init = (wss) => {
                 }
 
                 /**
-                 * @description Add message event, "ADD_MESSAGE". 
+                 * @description Add message event, "ADD_MESSAGE".
                  * When an "ADD_MESSAGE" event is sent, broadcast it to all connected
                  * clients
                  */
@@ -65,17 +65,17 @@ exports.init = (wss) => {
                     break
             }
         });
-    });
 
-    /**
-     * @description On connection close, remove the user naem from 
-     * the list and broadcast the new users list.
-     */
-    ws.on('close', () => {
-        users.splice(index, 1)
-        broadcast({
-            type: 'USERS_LIST',
-            users
-        }, ws)
+        /**
+         * @description On connection close, remove the user naem from
+         * the list and broadcast the new users list.
+         */
+        ws.on('close', () => {
+            users.splice(index, 1)
+            broadcast({
+                type: 'USERS_LIST',
+                users
+            }, ws)
+        });
     });
 };

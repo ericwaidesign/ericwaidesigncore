@@ -1,16 +1,11 @@
-/**
- * @author <ericwaidesign@gmail.com>
- */
-
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
 import ImageLoaderApp from './components/ImageLoader/App';
 import ChatApp from './components/Chat/App';
 
-import chat from './reducers';
+import chat from "./components/Chat/reducers";
 
 import './assets/css/index.css';
 

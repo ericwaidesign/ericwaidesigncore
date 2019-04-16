@@ -1,4 +1,4 @@
-'use strict'
+"use strict"
 
 module.exports = {
 	// secret password to be used for the verification signature section of the JWT
