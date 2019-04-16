@@ -1,15 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import createSagaMiddleware from "redux-saga";
 
-import ImageLoaderApp from './components/ImageLoader/App';
-import ChatApp from './components/Chat/App';
-
+import ImageLoaderApp from "./components/ImageLoader/App";
+import ChatApp from "./components/Chat/App";
 import chat from "./components/Chat/reducers";
-
+import reducers from "./components"
 import './assets/css/index.css';
 
-const store = createStore(chat);
+const sagaMiddleware = createSagaMiddleware();
+
+const store = createStore(
+    combineReducers,
+    applyMiddleware(sagaMiddleware)
+);
+
+const socket = setupSocket(store.dispatch, username);
+sagaMiddleware.run(handleNewMessage, {socket, username});
 
 /* Render ImageLoader component into DOM */
 ReactDOM.render(<ImageLoaderApp />, document.getElementById('ImageLoaderRoot'));
