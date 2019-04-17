@@ -7,8 +7,11 @@ import createSagaMiddleware from "redux-saga";
 import ImageLoaderApp from "./components/ImageLoader/App";
 import ChatApp from "./components/Chat/App";
 import chat from "./components/Chat/reducers";
-import reducers from "./components"
-import './assets/css/index.css';
+import reducers from "./components/Chat/reducers";
+import handleNewMessage from "./components/Chat/sagas";
+import setupSocket from "./components/Chat/sockets";
+import username from "./components/Chat/utils/name";
+import "./assets/css/index.css";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -21,7 +24,7 @@ const socket = setupSocket(store.dispatch, username);
 sagaMiddleware.run(handleNewMessage, {socket, username});
 
 /* Render ImageLoader component into DOM */
-ReactDOM.render(<ImageLoaderApp />, document.getElementById('ImageLoaderRoot'));
+ReactDOM.render(<ImageLoaderApp />, document.getElementById("ImageLoaderRoot"));
 
 /* Render Chat component into DOM */
 ReactDOM.render(
@@ -31,5 +34,5 @@ ReactDOM.render(
     <Provider store={store}>
         <ChatApp />
     </Provider>,
-    document.getElementById('ChatRoot')
+    document.getElementById("ChatRoot")
 );

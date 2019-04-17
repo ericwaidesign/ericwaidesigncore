@@ -1,11 +1,12 @@
 {
-  "name": "core",
+  "name": "server",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "1.18.3",
     "chalk": "^2.4.2",
+    "chance": "^1.0.18",
     "express": "4.16.3",
     "helmet": "^3.16.0",
     "jsonwebtoken": "8.1.1",
@@ -26,7 +27,7 @@
   },
   "scripts": {
     "preinstall": "npm install pm2 -g",
-    "start": "pm2-runtime server/server.js -i max",
+    "start": "NODE_ENV=prod pm2-runtime server/server.js -i max",
     "dev": "nodemon --watch server/server.js",
     "inspect": "node --inspect-brk server/server.js",
     "heroku-postbuild": "cd client && yarn && yarn run build"
