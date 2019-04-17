@@ -16,7 +16,7 @@ import "./assets/css/index.css";
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
-    combineReducers,
+    reducers,
     applyMiddleware(sagaMiddleware)
 );
 

@@ -5,7 +5,7 @@
  */
 
 const express = require("express");
-const ImageController = require("./controller")
+const ChatController = require("./controller")
 
 const apiRoutes = express.Router();
 const chatRoutes = express.Router();
@@ -18,7 +18,7 @@ apiRoutes.use("/chat", chatRoutes);
  * @returns {JSON} - the list of file name in JSON format
  */
 chatRoutes.route("/")
-    .get(ImageController.getImages);
+    .get(ChatController.getMessages);
 
 module.exports = {
     router: apiRoutes,

@@ -2,7 +2,7 @@
 
 module.exports = {
 	// secret password to be used for the verification signature section of the JWT
-	PORT: process.env.PORT || 80,
+	PORT: process.env.PORT || 9000,
 	DB: {
         DEBUG: true,
         MONGODB: "postdb1",
