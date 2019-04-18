@@ -13,9 +13,10 @@ const Express = require("./express");
 const app = express(); // create instance of express, initialize express app
 const server = require("http").createServer(app);
 
-const socket = require("socket.io");
-const io = require("./io");
-io.init(socket);
+// attach socket io to HTTP server
+const io = require("socket.io")(server);
+const Io = require("./io");
+Io.init(io);
 
 // start server
 server.listen(configs.PORT, function () {
