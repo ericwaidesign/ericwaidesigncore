@@ -17,7 +17,7 @@ exports.init = (wss) => {
     }
 
     /**
-     * @description Accept connection
+     * @description Through socket, listen for any connections to the server
      */
     wss.on("connection", ws => {
         let index;

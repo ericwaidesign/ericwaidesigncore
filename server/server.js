@@ -13,11 +13,9 @@ const Express = require("./express");
 const app = express(); // create instance of express, initialize express app
 const server = require("http").createServer(app);
 
-// create centralized server where users log into and talk to each other
-const WebSocket = require("ws");
-const wss = new WebSocket.Server({ server });
-const Wss = require("./wss");
-Wss.init(wss);
+const socket = require("socket.io");
+const io = require("./io");
+io.init(socket);
 
 // start server
 server.listen(configs.PORT, function () {

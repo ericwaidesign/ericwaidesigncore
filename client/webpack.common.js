@@ -16,7 +16,7 @@ const CopyWebpackPluginConfig = new CopyWebpackPlugin([{
 
 module.exports = {
     entry: [
-        path.join(__dirname, "src/index.js")
+        "@babel/polyfill", path.join(__dirname, "src/index.js")
     ],
     output: {
         path: path.join(__dirname, "public"),

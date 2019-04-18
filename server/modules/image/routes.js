@@ -1,8 +1,6 @@
 "use strict"
 
 /**
- * modules/image/image.routes.js
- *
  * @description All routes with "/api/image" come through here.
  */
 

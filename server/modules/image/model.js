@@ -2,8 +2,6 @@
  * @author <ericwaidesign@gmail.com>
  */
 
-'use strict'
-
 /**
  * @description Create an Image.
  * @param {string} highRestFileName - The file name of the high res image without extension.

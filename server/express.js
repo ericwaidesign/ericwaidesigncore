@@ -1,5 +1,6 @@
 "use strict"
 
+const cors = require('cors');
 const helmet = require("helmet");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
@@ -11,6 +12,13 @@ exports.init = (app) => {
 
     // secure Express app with various HTTP headers
     app.use(helmet());
+
+    // Cross-Orgin Resrouce Sharing
+    //  the way to let clients and servers communicate even if they are
+    //  not on the same domain.
+    app.use(cors({
+        exposedHeaders: "*"
+    }));
 
     // parse application/x-www-form-urlencoded
     //  parse incoming JSON form data POST requests into req.body obj
