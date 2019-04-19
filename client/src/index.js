@@ -13,6 +13,9 @@ import setupSocket from "./components/Chat/sockets";
 import username from "./components/Chat/utils/name";
 import "./assets/css/index.css";
 
+// require the file to be added to the public folder by webpack
+require("./assets/favicon.ico");
+
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(

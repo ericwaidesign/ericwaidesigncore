@@ -44,6 +44,11 @@ module.exports = {
                 use: ['ignore-loader']
             },
             {
+                // config to not scramble the image file names
+                test: /\.ico$|\.gif$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
+                loader: 'file-loader?name=[name].[ext]'  // retain original file name
+            },
+            {
                 // any file extension matches .png, .jpeg, .jpg or .svg
                 test: /\.(png|jp(e*)g|svg)$/,
                 use: [{
