@@ -41,23 +41,30 @@ module.exports = {
             },
             {
                 test: /\.jpg$/,
-                use: ['ignore-loader']
+                use: ["ignore-loader"]
             },
             {
                 // config to not scramble the image file names
-                test: /\.ico$|\.gif$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
-                loader: 'file-loader?name=[name].[ext]'  // retain original file name
+                test: /\.ico$/,
+                use: [
+                    {
+                        loader: "file-loader",  // retain original file name
+                        options: {
+                            name: "assets/[name].[ext]"
+                        }
+                    }
+                ]
             },
             {
                 // any file extension matches .png, .jpeg, .jpg or .svg
                 test: /\.(png|jp(e*)g|svg)$/,
                 use: [{
-                    loader: 'url-loader',
+                    loader: "url-loader",
                     options: {
                         // Convert images < 8kb to base64 strings, inlined in the code
                         // larger images will be passed to file-loader to process
                         limit: 8000,
-                        name: 'assets/images/[hash]-[name].[ext]'
+                        name: "assets/images/[hash]-[name].[ext]"
                     }
                 }]
             }
