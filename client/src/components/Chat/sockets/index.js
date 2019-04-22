@@ -1,8 +1,9 @@
 import * as types from '../constants/ActionTypes'
 import { messageReceived, populateUsersList } from '../actions'
+import utils from "../utils"
 
 const setupSocket = (dispatch, username, port) => {
-  const socket = new WebSocket(`ws://${ localhost }:${ port }`)
+  const socket = new WebSocket(`wss://${ utils.getUrl() }:${ port }`)
 
   socket.onopen = () => {
     socket.send(JSON.stringify({

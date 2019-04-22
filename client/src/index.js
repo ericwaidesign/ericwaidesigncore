@@ -28,12 +28,12 @@ const socket = setupSocket(store.dispatch, username, port);
 sagaMiddleware.run(handleNewMessage, { socket, username });
 
 /* Render Chat component into DOM */
-ReactDOM.render(<ChatApp />, document.getElementById("ChatRoot"));
-
-/* Render ImageLoader component into DOM */
 ReactDOM.render(
     <Provider store={store}>
-        <ImageLoaderApp />
+        <ChatApp />
     </Provider>,
-    document.getElementById("ImageLoaderRoot")
+    document.getElementById("ChatRoot")
 );
+
+/* Render ImageLoader component into DOM */
+ReactDOM.render(<ImageLoaderApp />, document.getElementById("ImageLoaderRoot"));
