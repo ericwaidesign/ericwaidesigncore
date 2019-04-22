@@ -20,13 +20,15 @@ exports.register = app => {
                 return fs.statSync(`${Modules}/${dir}`).isDirectory();
             })
             .forEach(dir => {
-                const file = require(`${Modules}/${dir}/routes`);
+                const path = `${Modules}/${dir}/routes`;
+                const file = require(path);
+                // console.log("registering routes from: " + path);
                 app.use(file.base, file.router);
             });
     } catch (error) {
-        console.log(
-            chalk`{red Failed to register routes: {red.bold ${error}}}`
-        );
+        // console.log(
+        //     chalk`{red Failed to register routes: {red.bold ${error}}}`
+        // );
     }
 
     /**
