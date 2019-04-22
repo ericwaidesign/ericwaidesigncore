@@ -14,9 +14,10 @@ const app = express(); // create instance of express, initialize express app
 const server = require("http").createServer(app);
 
 // attach socket io to HTTP server
-const io = require("socket.io")(server);
-const Io = require("./io");
-Io.init(io);
+const WebSocket = require('ws');
+const wss = new WebSocket.Server({ server });
+const Wss = require("./wss");
+Wss.init(wss);
 
 // start server
 server.listen(configs.PORT, function () {
