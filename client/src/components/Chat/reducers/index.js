@@ -13,6 +13,10 @@ import { combineReducers } from 'redux';
 import messages from './messages';
 import users from './users';
 
+/**
+ * @description the state is reduced (or accumulated) based on the
+ * given action.
+ */
 const chat = combineReducers({
     messages,
     users

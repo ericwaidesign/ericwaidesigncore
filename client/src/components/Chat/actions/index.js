@@ -1,6 +1,6 @@
 /**
  * @description Actions is a regular JavaScript object that usually
- * has 2 properties (type (required) and payload).
+ * has 2 properties (type(required) and payload).
  */
 import * as types from '../constants/ActionTypes';
 
