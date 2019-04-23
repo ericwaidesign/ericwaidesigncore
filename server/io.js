@@ -29,9 +29,9 @@ exports.init = (io) => {
                 username + ": " + message
             );
 
-            const message = { "message" : message, "senderUsername" : username };
+            let message = { "message" : message, "senderUsername" : username };
 
-            // send the message to the client
+            // send the message to all users including the sender using io.emit()
             socket.emit("message", message);
         });
 
@@ -85,6 +85,7 @@ exports.init = (io) => {
                 content: roomData.message,
                 room: roomData.room
             });
+
             message.save(err => {
                 if(err) {
                     return err;
