@@ -15,6 +15,9 @@ exports.init = (io) => {
             console.log(
                 chalk`{green {green.bold username} has joined the chat}`
             );
+
+            // broadcast to all users
+            socket.broadcast.emit("userjoinedthechat", username + " : has joined the chat");
         });
 
         /**
@@ -38,6 +41,8 @@ exports.init = (io) => {
          */
         socket.on("disconnect", () => {
             console.log("user has left");
+
+            // broadcast to all users
             socket.broadcast.emit("userdisconnect", "user has left");
         });
 
