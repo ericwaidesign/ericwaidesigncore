@@ -22,8 +22,7 @@ const store = createStore(
     applyMiddleware(sagaMiddleware)
 );
 
-const port = "9000";
-const socket = setupSocket(store.dispatch, username, port);
+const socket = setupSocket(store.dispatch, username);
 
 sagaMiddleware.run(handleNewMessage, { socket, username });
 

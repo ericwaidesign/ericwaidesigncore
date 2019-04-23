@@ -12,7 +12,7 @@ const messageRoutes = express.Router();
 const messagesRoutes = express.Router();
 
 // Message Routes
-apiRoutes.use("/message", messageRoutes);
+// apiRoutes.use("/message", messageRoutes);
 apiRoutes.use("/messages", messagesRoutes);
 
 /**
