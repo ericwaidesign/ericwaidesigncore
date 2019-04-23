@@ -3,6 +3,10 @@
 const mongoose = require("mongoose");
 const chalk = require('chalk');
 
+/**
+ * @description The Mongoose database connection methods that handle
+ * the connection
+ */
 module.exports = (config) => {
     mongoose.Promise = global.Promise;
     mongoose.set("debug", config.DB.DEBUG);
@@ -17,6 +21,7 @@ module.exports = (config) => {
     );
 
     /* if connection established */
+    // event is fired when the connection is successfully connected
     mongoose.connection.on("connected", () => {
         console.log(
             chalk`{green Mongoose connection opens {green.bold ${config.DB.MONGODB}}}`
@@ -24,6 +29,7 @@ module.exports = (config) => {
     });
 
     /* if connection failed */
+    // event is fired when the connection is failed to connect
     mongoose.connection.on("error", err => {
         console.error(
             chalk`{red Mongoose connection error: {red bold ${config.DB.MONGODB}, ${err}}}`
@@ -31,6 +37,7 @@ module.exports = (config) => {
     });
 
     /* if connection disconnected */
+    // event is fired when the user was disconnected.
     mongoose.connection.on("disconnected", err => {
         console.error(
             chalk`{red Mongoose connection: {red.bold ${config.DB.MONGODB}} disconnected}`
