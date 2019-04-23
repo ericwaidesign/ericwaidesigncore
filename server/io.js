@@ -1,6 +1,45 @@
+/**
+ * @description The socket.io methods that handles all the events of the
+ * Chat component. These events include users connection states and messages.
+ * The socket.io mechanism is based on listening and firing events.
+ */
 exports.init = (io) => {
+    // detect user connected to the server
     io.on("connection", socket => {
         console.log("user connected");
+
+        /**
+         * @description Listener for the event "join" emitted by the client.
+         */
+        socket.on("join", username => {
+            console.log(
+                chalk`{green {green.bold username} has joined the chat}`
+            );
+        });
+
+        /**
+         * @description Listener for the event "messagedetection" emitted by the
+         * client.
+         */
+        socket.on("messagedetection", (username, message) => {
+            console.log(
+                username + ": " + message
+            );
+
+            const message = { "message" : message, "senderUsername" : username };
+
+            // send the message to the client
+            socket.emit("message", message);
+        });
+
+        /**
+         * @description Listener for the event "disconnect" emitted by the client
+         * when disconnect from the client side.
+         */
+        socket.on("disconnect", () => {
+            console.log("user has left");
+            socket.broadcast.emit("userdisconnect", "user has left");
+        });
 
         socket.on("subscribe", data => {
             room = data.room;
