@@ -15,8 +15,10 @@ import "./assets/css/index.css";
 // require the file to be added to the public folder by webpack
 require("./assets/favicon.ico");
 
+////////////////////////////// Chat //////////////////////////////
+// redux middleware libary "redux-saga" that handles redux side effects
 const sagaMiddleware = createSagaMiddleware();
-
+// create Redux store that holds the state of the app
 const store = createStore(
     reducers,
     applyMiddleware(sagaMiddleware)
@@ -34,5 +36,6 @@ ReactDOM.render(
     document.getElementById("ChatRoot")
 );
 
+////////////////////////////// ImageLoader //////////////////////////////
 /* Render ImageLoader component into DOM */
 ReactDOM.render(<ImageLoaderApp />, document.getElementById("ImageLoaderRoot"));
