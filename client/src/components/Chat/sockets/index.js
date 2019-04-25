@@ -11,6 +11,7 @@ const setupSocket = (dispatch, username) => {
       name: username
     }))
   }
+  
   socket.onmessage = (event) => {
     const data = JSON.parse(event.data)
     switch (data.type) {
