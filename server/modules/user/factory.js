@@ -1,5 +1,9 @@
-const User = require(.model);
+const User = require("./model");
 
-export.createUser = () => {
+const createUser = () => {
     
+}
+
+module.exports = {
+    createUser
 }
