@@ -14,7 +14,7 @@ const {
     VERIFY_USER
 } = require("./constants/events");
 
-const {} = require
+const {} = require(".");
 
 let connectedUsers = {};
 let communityChat = createChat();
