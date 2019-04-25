@@ -1,6 +1,6 @@
 const User = require("./model");
 
-const createUser = () => {
+const createUser = email => {
     
 }
 
