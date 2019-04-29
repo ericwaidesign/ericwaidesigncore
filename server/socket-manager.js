@@ -1,6 +1,7 @@
 "use strict"
 
 const chalk = require('chalk');
+const UserFactory = require('./modules/user/factory');
 
 const {
     COMMUNITY_CHAT,
@@ -26,7 +27,7 @@ exports.init = (io) => {
 
     io.on("connection", socket => {
 
-        socket.on(VERIFY_USER, (username, callback) => {
+        socket.on(VERIFY_USER, (email, callback) => {
             if(isUser()) {
                 
             }
