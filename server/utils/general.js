@@ -1,4 +1,3 @@
-// Invoke 'strict' JavaScript mode
 'use strict'
 
 const path = require('path');
@@ -12,7 +11,8 @@ exports.getFileNameWithoutExtension = (fileName) => {
 }
 
 /**
- * @description Join(check) the given relative path against the path of the current executing file (__dirname).
+ * @description Join(check) the given relative path against the path of the 
+ *  current executing file (__dirname).
  * @param {string} relativePath
  */
 exports.getRelativePath = (relativePath) => {
@@ -24,4 +24,11 @@ exports.getRelativePath = (relativePath) => {
  */
 exports.joinPaths = (path1, path2) => {
     return path.join(path1, path2);
+}
+
+/**
+ * @description Return a string represented in 24hr time i.e. '11:30', '19:30'
+ */ 
+exports.getTime = (date) => {
+    return `${date.getHours()}:${("0"+date.getMinutes()).slice(-2)}`
 }
