@@ -3,8 +3,10 @@ import io from 'socket.io-client';
 import { USER_CONNECTED, LOGOUT } from '../constants/events';
 import LoginForm from './LoginForm';
 import ChatContainer from './chats/ChatContainer';
+import utils from '../../../utils';
 
-const socketUrl = "http://localhost:3231"
+const socketUrl = `ws://${ utils.getUrl() }api/messages`;
+
 export default class Layout extends Component {
 
 	constructor(props) {
