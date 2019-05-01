@@ -20,10 +20,16 @@ exports.register = app => {
         })
         .forEach(dir => {
             try {
-                const path = `${Modules}/${dir}/routes`;
-                const file = require(path);
-                // console.log("registering routes from: " + path);
-                app.use(file.base, file.router);
+                //
+                if (dir === 'socket') {
+                    const server = require('http').Server(app);
+                    const io = require('socket.io')(server);
+                    require("./io").init(io);
+                } else {
+                    const path = `${Modules}/${dir}/routes`;
+                    const file = require(path);
+                    app.use(file.base, file.router);
+                }
             } catch (error) {
                 console.log(
                     chalk`{red Failed to register routes for module: ${Modules} in ${dir}: {red.bold ${error}}}`

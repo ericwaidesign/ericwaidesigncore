@@ -20,8 +20,8 @@ const Io = require("./io");
 // const wss = new WebSocket.Server({ server });
 // const Wss = require("./wss");
 // Wss.init(wss);
-const io = require("socket.io").listen(server);
-require("./io").init(io);
+// const io = require("socket.io").listen(server);
+// require("./io").init(io);
 
 // start server
 server.listen(configs.PORT, function () {

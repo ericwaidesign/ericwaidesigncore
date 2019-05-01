@@ -39,7 +39,7 @@ let communityChat = createChat();
 
 
 /**
- * 
+ *
  */
 exports.init = (io) => {
 
@@ -112,7 +112,7 @@ exports.init = (io) => {
 			socket.to(receiverSocket).emit(PRIVATE_MESSAGE, newChat)
 			socket.emit(PRIVATE_MESSAGE, newChat)
 		}
-	}) 
+	})
 
     });
 
