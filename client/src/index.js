@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import ImageLoaderApp from "./components/ImageLoader/App";
-import ChatApp from "./components/Chat2/App";
+import ChatApp from "./components/Chat/App";
 // import { Provider } from "react-redux";
 // import { createStore, applyMiddleware } from "redux";
 // import createSagaMiddleware from "redux-saga";

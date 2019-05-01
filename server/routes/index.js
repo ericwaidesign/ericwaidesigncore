@@ -14,22 +14,22 @@ exports.register = app => {
     /**
      * @description register routes for all the modules
      */
-    try {
-        fs.readdirSync(Modules)
-            .filter(dir => {
-                return fs.statSync(`${Modules}/${dir}`).isDirectory();
-            })
-            .forEach(dir => {
+    fs.readdirSync(Modules)
+        .filter(dir => {
+            return fs.statSync(`${Modules}/${dir}`).isDirectory();
+        })
+        .forEach(dir => {
+            try {
                 const path = `${Modules}/${dir}/routes`;
                 const file = require(path);
                 // console.log("registering routes from: " + path);
                 app.use(file.base, file.router);
-            });
-    } catch (error) {
-        // console.log(
-        //     chalk`{red Failed to register routes: {red.bold ${error}}}`
-        // );
-    }
+            } catch (error) {
+                console.log(
+                    chalk`{red Failed to register routes for module: ${Modules} in ${dir}: {red.bold ${error}}}`
+                );
+            }
+        });
 
     /**
      * @description The "catch all" handler: for any request
