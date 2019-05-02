@@ -13,7 +13,7 @@ const Express = require("./express");
 const app = express(); // create instance of express, initialize express app
 const server = require("http").createServer(app);
 
-const Io = require("./io");
+// const Io = require("./io");
 
 // attach socket io to HTTP server
 // const WebSocket = require('ws');

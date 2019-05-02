@@ -19,21 +19,23 @@ exports.register = app => {
             return fs.statSync(`${Modules}/${dir}`).isDirectory();
         })
         .forEach(dir => {
-            try {
-                //
-                if (dir === 'socket') {
-                    const server = require('http').Server(app);
-                    const io = require('socket.io')(server);
-                    require("./io").init(io);
-                } else {
-                    const path = `${Modules}/${dir}/routes`;
+            console.log('Module: ' + dir);
+            // for the socket module
+            if (dir === 'socket') {
+                const server = require('http').Server(app);
+                const socketIo = require('socket.io')(server);
+                require("../modules/socket/manager").init(socketIo);
+            } else { //
+                const path = `${Modules}/${dir}/routes`;
+                console.log('path: ' + path);
+                try {
                     const file = require(path);
                     app.use(file.base, file.router);
+                } catch (error) {
+                    console.log(
+                        // chalk`{red Failed to register routes for module: ${Modules} in ${dir}: {red.bold ${error}}}`
+                    );
                 }
-            } catch (error) {
-                console.log(
-                    chalk`{red Failed to register routes for module: ${Modules} in ${dir}: {red.bold ${error}}}`
-                );
             }
         });
 

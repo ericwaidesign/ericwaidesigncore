@@ -12,15 +12,15 @@ const {
     USER_CONNECTED,
     USER_DISCONNECTED,
     VERIFY_USER
-} = require("./constants/events");
+} = require("../../constants/events");
 
-const {
-    createNewUser,
-    addUserToChat,
-    removeUserFromChat,
-    isUserInChat
-} = require('./modules/user/service');
-const userService = require('./modules/user/service');
+// const {
+//     createNewUser,
+//     addUserToChat,
+//     removeUserFromChat,
+//     isUserInChat
+// } = require('./modules/user/service');
+// const userService = require('./modules/user/service');
 
 // const {
 //     createMessage
@@ -30,9 +30,9 @@ const userService = require('./modules/user/service');
 //     createChat
 // } = require('./modules/chat/service');
 
-const utils = require('./utils/general');
+const utils = require('../../utils/general');
 
-const { createUser, createMessage, createChat } = require('./Factories');
+const { createUser, createMessage, createChat } = require('../../Factories');
 
 let connectedUsers = {};
 let communityChat = createChat();
@@ -55,7 +55,7 @@ exports.init = (io) => {
 		if(isUser(connectedUsers, nickname)){
 			callback({ isUser:true, user:null })
 		}else{
-			callback({ isUser:false, user:createUser({name:nickname, socketId:socket.id})})
+			callback({ isUser: false, user: createUser({name:nickname, socketId:socket.id})})
 		}
 	})
 
@@ -70,7 +70,6 @@ exports.init = (io) => {
 
 		io.emit(USER_CONNECTED, connectedUsers)
 		console.log(connectedUsers);
-
 	})
 
 	//User disconnects
