@@ -32,3 +32,10 @@ exports.joinPaths = (path1, path2) => {
 exports.getTime = (date) => {
     return `${date.getHours()}:${("0"+date.getMinutes()).slice(-2)}`
 }
+
+/**
+ * @description
+ */
+exports.isNullOrEmpty = (data) => {
+    return (!data || data.length <= 0);
+}
