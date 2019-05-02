@@ -5,8 +5,11 @@ import LoginForm from './LoginForm';
 import ChatContainer from './chats/ChatContainer';
 import utils from '../../../utils';
 
-const socketUrl = `ws://${ utils.getUrl() }api/messages`;
+const socketUrl = `wss://${ utils.getUrl() }api/messages`;
 
+/**
+ *
+ */
 export default class Layout extends Component {
 
 	constructor(props) {
@@ -22,7 +25,9 @@ export default class Layout extends Component {
 		this.initSocket()
 	}
 
-	// Connect to and initializes the socket.
+	/**
+     * Connect to and initializes the socket.
+     */
 	initSocket = ()=>{
 		const socket = io(socketUrl)
 
