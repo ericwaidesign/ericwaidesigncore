@@ -16,12 +16,13 @@ const server = require("http").createServer(app);
 // const Io = require("./io");
 
 // attach socket io to HTTP server
-// const WebSocket = require('ws');
-// const wss = new WebSocket.Server({ server });
-// const Wss = require("./wss");
-// Wss.init(wss);
+const WebSocket = require('ws');
+const webSocketServer = new WebSocket.Server({ server });
+const socketManager = require('./socket-manager');
+socketManager.init(webSocketServer);
+
 // const io = require("socket.io").listen(server);
-// require("./io").init(io);
+// require("./modules/socket/manager").init(io);
 
 // start server
 server.listen(configs.PORT, function () {

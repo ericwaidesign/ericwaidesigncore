@@ -3,7 +3,7 @@ import { messageReceived, populateUsersList } from '../actions'
 import utils from "../utils"
 
 const setupSocket = (dispatch, username) => {
-  const socket = new WebSocket(`ws://${ utils.getUrl() }api/messages`);
+  const socket = new WebSocket(`wss://${ utils.getUrl() }`);
 
   socket.onopen = () => {
     socket.send(JSON.stringify({
@@ -11,7 +11,7 @@ const setupSocket = (dispatch, username) => {
       name: username
     }))
   }
-  
+
   socket.onmessage = (event) => {
     const data = JSON.parse(event.data)
     switch (data.type) {

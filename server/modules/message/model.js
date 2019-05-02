@@ -1,9 +1,8 @@
 const mongoose = require("mongoose");
 
 const MessageSchema = new mongoose.Schema({
-    username: {
-        type: String,
-        unique: true,
+    user: {
+        type: Schema.ObjectId,
         require: true
     },
     content: {

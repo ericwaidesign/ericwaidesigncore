@@ -1,13 +1,17 @@
-import React, { Component } from 'react';
-import Layout from './components/Layout';
-import './assets/css/index.css';
+import React from 'react'
+import './assets/css/App.css'
+import { Sidebar } from './containers/Sidebar'
+import { MessagesList } from './containers/MessagesList'
+import { AddMessage } from './containers/AddMessage'
 
-class App extends Component {
-  render() {
-    return (
-        <Layout />
-    );
-  }
-}
+const App = () => (
+    <div id="container">
+        <Sidebar />
+        <section id="main">
+            <MessagesList />
+            <AddMessage />
+        </section>
+    </div>
+)
 
-export default App;
+export default App

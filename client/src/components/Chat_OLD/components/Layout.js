@@ -5,7 +5,7 @@ import LoginForm from './LoginForm';
 import ChatContainer from './chats/ChatContainer';
 import utils from '../../../utils';
 
-const socketUrl = `wss://${ utils.getUrl() }api/messages`;
+const socketUrl = `wss://${ utils.getUrl() }`;
 
 /**
  *

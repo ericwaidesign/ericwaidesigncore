@@ -1,16 +1,18 @@
 "use strict"
 
+const users = [];
+const WebSocket = require('ws');
+
 /**
- * Use the native WebSocket object in the browser, which is widely
+ * Use the native WebSocket object in the browser, wphich is widely
  * supported and "ws" WebSocket library on the server.
  */
-exports.init = (wss) => {
+exports.init = (webSocketServer) => {
 
-    const users = [];
-
-    const broadcast = (data, ws) => {
-        wss.clients.forEach((client) => {
-            if (client.readyState === WebSocket.OPEN && client !== ws) {
+    const broadcast = (data, webSocket) => {
+        webSocketServer.clients.forEach((client) => {
+            if (client.readyState === WebSocket.OPEN && client !== webSocket) {
+                console.log('broadcast: send data author: ' + data.author + ', data message: ' + data.message);
                 client.send(JSON.stringify(data))
             }
         });
@@ -19,9 +21,9 @@ exports.init = (wss) => {
     /**
      * @description Through socket, listen for any connections to the server
      */
-    wss.on("connection", ws => {
+    webSocketServer.on("connection", webSocket => {
         let index;
-        ws.on("message", message => {
+        webSocket.on("message", message => {
             const data = JSON.parse(message);
             console.log(message);
 
@@ -34,9 +36,11 @@ exports.init = (wss) => {
                  * a broadcast to the "users_list" for all the connected clients.
                  */
                 case 'ADD_USER': {
-                    index = users.length
-                    users.push({ name: data.name, id: index + 1 })
-                    ws.send(JSON.stringify({
+                    console.log('socket-manager: ADD_USER');
+                    index = users.length;
+                    console.log('socket-manager: ADD_USER: ' + index);
+                    users.push({ name: data.name, id: index + 1 });
+                    webSocket.send(JSON.stringify({
                         type: 'USERS_LIST',
                         users
                     }));
@@ -45,7 +49,7 @@ exports.init = (wss) => {
                     broadcast({
                         type: 'USERS_LIST',
                         users
-                    }, ws)
+                    }, webSocket)
                     break
                 }
 
@@ -55,11 +59,12 @@ exports.init = (wss) => {
                  * clients
                  */
                 case 'ADD_MESSAGE':
+                    console.log('socket-manager: ADD_MESSAGE');
                     broadcast({
                         type: 'ADD_MESSAGE',
                         message: data.message,
                         author: data.author
-                    }, ws)
+                    }, webSocket)
                     break
                 default:
                     break
@@ -67,15 +72,16 @@ exports.init = (wss) => {
         });
 
         /**
-         * @description On connection close, remove the user naem from
+         * @description On connection close, remove the user name from
          * the list and broadcast the new users list.
          */
-        ws.on('close', () => {
+        webSocket.on('close', () => {
+            console.log('socket-manager: close');
             users.splice(index, 1)
             broadcast({
                 type: 'USERS_LIST',
                 users
-            }, ws)
+            }, webSocket)
         });
     });
 };

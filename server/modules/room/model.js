@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
 
 const RoomSchema = new mongoose.Schema({
-    title: {
+    name: {
         type: String,
-        unique: true,
         require: true
     },
+    messages,
+    users,
     _id: {
         type: Schema.ObjectId,
         auto: true
