@@ -1,3 +1,5 @@
+'user strict'
+
 const Room = require("./model");
 const Message = require("../message/model");
 
@@ -7,6 +9,11 @@ exports.getRoomById = (id) => {
     });
 }
 
+exports.getUsersByRoomId = (roomId) => {
+    Room.findById(id, (err, room) => {
+        return room.users;
+    });
+}
 
 exports.addMessageToRoom = (id, message) => {
     const room = getRoomById(id);
@@ -15,8 +22,8 @@ exports.addMessageToRoom = (id, message) => {
     }
 }
 
-exports.addUserToRoom = (id, user) => {
-    const room = getRoomById(id);
+exports.addUserToRoom = (roomId, user) => {
+    const room = getRoomById(roomId);
     if (room) {
         room.users.push(user);
     }

@@ -1,8 +1,10 @@
 'use strict'
 
-const users = [];
+// const users = [];
 const WebSocket = require('ws');
-const UserController = require('./modules/user/controller');
+const userServices = require('./modules/user/services');
+const roomServices = require('./modules/room/services');
+const messageServices = require('./modules/message/services');
 const events = require('./constants/events');
 
 /**
@@ -13,7 +15,7 @@ exports.init = (wss) => {
     /**
      * @description
      */
-    wss.on("connection", ws => {
+    wss.on('connection', ws => {
 
         let index;
 
@@ -25,7 +27,7 @@ exports.init = (wss) => {
             console.log(message);
 
             switch (data.type) {
-                case events.ADD_USER: {
+                case events.ADD_USER_TO_ROOM: {
                     addUserToRoom(data, ws);
                     break;
                 }
@@ -65,20 +67,23 @@ exports.init = (wss) => {
     /**
      * @description
      */
-    const addUserToRoom = (data, ws) => {
-        // index = users.length
-        // users.push({ name: data.name, id: index + 1 })
-        // data.email;
+    const addUserToRoom = (event, data, ws) => {
+        const user = userServices.getUserByEmail(data.user.email);
+        if (!user) {
+            user = userServices.createUser(data.user.name, data.user.email);
+        }
+        roomServices.addUserToRoom(data.room.id, user);
+        const users = roomServices.getUsersByRoomId(data.room.id);
 
-        ws.send(
-            JSON.stringify({
-                type: 'USERS_LIST',
-                users
-            })
-        );
+        // ws.send(
+        //     JSON.stringify({
+        //         type: 'USERS_LIST',
+        //         users
+        //     })
+        // );
 
         broadcast({
-            type: 'USERS_LIST',
+            type: event,
             users
         }, ws);
     }
@@ -86,11 +91,14 @@ exports.init = (wss) => {
     /** 
      * @description
      */
-    const addMessage = (data, ws) => {
+    const addMessage = (event, data, ws) => {
+        const message = messageServices.createMessage();
+        roomServices.addMessageToRoom(data.room.id, message);
+        
         broadcast({
-            type: events.ADD_MESSAGE,
-            message: data.message,
-            author: data.author
+            type: event,
+            message: message.content,
+            author: message.user
         }, ws)
     }
 };

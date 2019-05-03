@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
 
 const MessageSchema = new mongoose.Schema({
-    user: {
+    author: {
         type: Schema.ObjectId,
+        ref: 'User',
         require: true
     },
     content: {
@@ -11,6 +12,7 @@ const MessageSchema = new mongoose.Schema({
     },
     room: {
         type: Schema.ObjectId,
+        ref: 'Room',
         require: true
     },
     _id: {
