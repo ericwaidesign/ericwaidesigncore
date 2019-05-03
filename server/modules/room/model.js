@@ -1,12 +1,14 @@
 const mongoose = require("mongoose");
+const User = require("User");
+const Message = require("Message");
 
 const RoomSchema = new mongoose.Schema({
     name: {
         type: String,
         require: true
     },
-    messages,
-    users,
+    users: [User],
+    messages: [Message],
     _id: {
         type: Schema.ObjectId,
         auto: true
