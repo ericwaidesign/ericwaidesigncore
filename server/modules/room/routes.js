@@ -1,7 +1,7 @@
 "use strict"
 
 /**
- * @description All routes with "/api/room" come through here.
+ * @description All routes with "/api/room" or "api/rooms" come through here.
  */
 
 const express = require("express");
@@ -16,17 +16,17 @@ apiRoutes.use("/room", roomRoutes);
 apiRoutes.use("/rooms", roomsRoutes);
 
 /**
- * @description HTTP GET /api/rooms
+ * @description HTTP GET /api/room
  * @returns {JSON}
  */
-roomsRoutes.route("/")
+roomRoutes.route("/")
     .get(roomController.getRooms);
 
 /**
  * @description HTTP POST /api/room
  * @returns {JSON}
  */
-roomRoutes.route("/")
+roomRoutes.route("/addRoom")
     .post(roomController.createRoom);
 
 module.exports = {
