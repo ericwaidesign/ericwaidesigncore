@@ -8,7 +8,7 @@ import createSagaMiddleware from "redux-saga";
 import reducers from "./components/Chat/reducers";
 import handleNewMessage from "./components/Chat/sagas";
 import setupSocket from "./components/Chat/sockets";
-import username from "./components/Chat/utils/name";
+// import username from "./components/Chat/utils/name";
 
 import "./assets/css/index.css";
 
@@ -21,8 +21,10 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
     reducers,
     applyMiddleware(sagaMiddleware)
-)
+);
 
+// TODO
+const username = 'ericwaidesign@gmail.com';
 const socket = setupSocket(store.dispatch, username);
 
 sagaMiddleware.run(handleNewMessage, { socket, username });

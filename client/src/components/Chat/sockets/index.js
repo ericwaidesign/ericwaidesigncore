@@ -12,6 +12,12 @@ const setupSocket = (dispatch, username) => {
     }))
   }
 
+  socket.onadduser = () => {
+      socket.send(JSON.stringify({
+
+      }));
+  }
+
   socket.onmessage = (event) => {
     const data = JSON.parse(event.data)
     switch (data.type) {

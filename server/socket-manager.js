@@ -27,7 +27,7 @@ exports.init = (wss) => {
             console.log(message);
 
             switch (data.type) {
-                case events.ADD_USER_TO_ROOM: {
+                case events.ADD_USER: {
                     addUserToRoom(data, ws);
                     break;
                 }
@@ -88,13 +88,13 @@ exports.init = (wss) => {
         }, ws);
     }
 
-    /** 
+    /**
      * @description
      */
     const addMessage = (event, data, ws) => {
         const message = messageServices.createMessage();
         roomServices.addMessageToRoom(data.room.id, message);
-        
+
         broadcast({
             type: event,
             message: message.content,
