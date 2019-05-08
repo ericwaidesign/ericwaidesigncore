@@ -1,15 +1,5 @@
-/* for small devices */
 .Sidebar {
-    width: 80px;
+    grid-area: sidebar;
     background-color: rgba(32, 32, 35, 1);
-    height: 100%;
-    border-right: 1px solid rgba(189, 189, 192, 0.1);
     transition: width 0.3s;
-}
-
-/* for large devices */
-@media (min-width: 576px) {
-    .Sidebar {
-        width: 320px;
-    }
 }

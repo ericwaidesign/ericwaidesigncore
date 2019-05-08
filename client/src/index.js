@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import ImageLoaderApp from "./components/ImageLoader/App";
+// import ImageLoaderApp from "./components/ImageLoader/App";
 import ChatApp from "./components/Chat/App";
 import "./assets/css/index.css";
 
@@ -13,4 +13,4 @@ ReactDOM.render(<ChatApp />, document.getElementById("ChatRoot"));
 
 ////////////////////////////// ImageLoader //////////////////////////////
 /* Render ImageLoader component into DOM */
-ReactDOM.render(<ImageLoaderApp />, document.getElementById("ImageLoaderRoot"));
+// ReactDOM.render(<ImageLoaderApp />, document.getElementById("ImageLoaderRoot"));
