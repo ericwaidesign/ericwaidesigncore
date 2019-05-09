@@ -4,6 +4,10 @@ import { setActiveUserId } from '../../actions';
 import store from '../../store';
 import './User.css';
 
+/**
+ * @description this class is consider a container because it talks to
+ * redux directly
+ */
 const User = ({ user }) => {
     const { name, profile_pic, status } = user;
 

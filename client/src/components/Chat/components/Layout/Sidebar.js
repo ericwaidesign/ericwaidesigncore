@@ -3,10 +3,12 @@ import User from "../../containers/User";
 import "./Sidebar.css";
 
 /**
- * @description map the contacts prop and render a User component for
- * each contact
+ * @description this class is consider a component because it does not
+ * talk to Redux directly. Map the contacts prop and render a User
+ * component for each contact.
  */
 const Sidebar = ({ contacts }) => {
+
     return (
         <aside className="Sidebar">
             {contacts.map(contact =>

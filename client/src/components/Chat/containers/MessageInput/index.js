@@ -4,6 +4,10 @@ import store from '../../store';
 import { setTypingValue, sendMessage } from '../../actions';
 import './MessageInput.css';
 
+/**
+ * @description this class is consider a container because it talks to
+ * redux directly
+ */
 const MessageInput = ({ value }) => {
     const state = store.getState();
 
