@@ -1,5 +1,5 @@
 import React from "react";
-import "../assets/css/Main.css";
+import "./Main.css";
 
 /**
  * @description

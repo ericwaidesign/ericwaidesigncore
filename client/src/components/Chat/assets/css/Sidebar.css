@@ -1,5 +1,0 @@
-.Sidebar {
-    grid-area: sidebar;
-    background-color: rgba(32, 32, 35, 1);
-    transition: width 0.3s;
-}
