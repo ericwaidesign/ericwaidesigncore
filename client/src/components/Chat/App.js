@@ -7,9 +7,11 @@ import "./assets/css/App.css";
  * @description
  */
 const App = () => {
+    const { contacts } = store.getState();
+
     return (
         <div className="App">
-            <Sidebar />
+            <Sidebar contacts={contacts} />
             <Main />
         </div>
     );

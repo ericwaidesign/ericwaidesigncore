@@ -6,6 +6,9 @@ import activeUserId from './activeUserId';
 import messages from './messages';
 import typing from './typing';
 
+/**
+ * @description 
+ */
 export default combineReducers({
     activeUserId,
     user,
