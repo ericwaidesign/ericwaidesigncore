@@ -12,7 +12,6 @@
     "express": "4.16.3",
     "helmet": "^3.16.0",
     "jsonwebtoken": "8.1.1",
-    "lodash": "^4.17.11",
     "mongoose": "5.2.5",
     "morgan": "1.7.0",
     "passport": "0.3.2",
@@ -24,8 +23,13 @@
     "yarn": "1.9.2"
   },
   "devDependencies": {
+    "faker": "^4.1.0",
+    "lodash": "^4.17.11",
     "nodemon": "^1.18.1",
     "redux": "^4.0.1",
+    "shortid": "^2.2.14",
+    "textgen": "0.0.0",
+    "txtgen": "^2.2.2",
     "typescript": "^3.4.3"
   },
   "scripts": {
