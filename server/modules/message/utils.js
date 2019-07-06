@@ -1,14 +1,9 @@
-const Message = require("./model");
-const messageService = require("./utils");
+'user strict'
 
-exports.getMessages = function (req, res) {
-    Message.find({}, (err, messages) => {
-        res.send(messages);
-    });
-}
+const Message = require('./model');
 
-exports.postMessage = function (req, res) {
-    let message = createMessage(req.author, req.message);
+exports.postMessage = function (data, res) {
+    let message = createMessage(data.author, data.message);
 
     message.save((err) => {
         if (err) {

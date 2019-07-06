@@ -18,7 +18,7 @@ const server = require("http").createServer(app);
 // attach socket io to HTTP server
 const WebSocket = require('ws');
 const webSocketServer = new WebSocket.Server({ server });
-const socketManager = require('./socket-manager');
+const socketManager = require('./socket/socket-manager');
 socketManager.init(webSocketServer);
 
 // const io = require("socket.io").listen(server);

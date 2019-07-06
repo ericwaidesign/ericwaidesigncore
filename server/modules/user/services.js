@@ -1,28 +1,18 @@
-'user strict'
-
+const userController = require('../modules/user/controller');
 const User = require('./model');
 
-exports.createUser = (name, email) => {
-    const user = new User({
-        name: name,
-        email: email
-    })
-    user.save((err) => {
-        if (err) {
-            return err;
+exports.setUserNameToReq = function (userName) {
+    let req = {
+        param: {
+            name: userName
         }
-    });
+    }
+
+    return req;
 }
 
-exports.getUserById = (id) => {
-    User.findById(id, (err, user) => {
-        return user;
-    });
-}
-
-exports.getUserByEmail = (email) => {
-    User.findOne({ email: email })
-        .then((err, user) => {
-            return user;
-        });
+exports.getUserByName = function(userName) {
+    let req = setUserNameToReq(userName);
+    let user = userController.getUserByName();
+    return user;
 }

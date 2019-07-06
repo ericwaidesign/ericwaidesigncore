@@ -1,5 +1,3 @@
-"use strict"
-
 /**
  * @description All routes with "/api/message" come through here.
  */
@@ -9,18 +7,17 @@ const messageController = require("./controller");
 
 const apiRoutes = express.Router();
 const messageRoutes = express.Router();
-const messagesRoutes = express.Router();
 
 // Message Routes
-// apiRoutes.use("/message", messageRoutes);
-apiRoutes.use("/messages", messagesRoutes);
+apiRoutes.use("/chat", messageRoutes);
 
 /**
  * @description HTTP GET /api/chat
- * @returns {JSON} - the list of file name in JSON format
+ * @returns {JSON} - 
  */
-messagesRoutes.route("/")
-    .get(messageController.getMessages);
+messageRoutes.route("/messages")
+    .get(messageController.getMessages)
+    .post(messageController.postMessage);
 
 module.exports = {
     router: apiRoutes,

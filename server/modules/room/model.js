@@ -6,14 +6,6 @@ const RoomSchema = new mongoose.Schema({
         type: String,
         require: true
     },
-    users: [{
-        type: Schema.ObjectId,
-        ref: 'User'
-    }],
-    messages: [{
-        type: Schema.ObjectId,
-        ref: 'Message'
-    }],
     _id: {
         type: Schema.ObjectId,
         auto: true

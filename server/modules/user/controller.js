@@ -1,32 +1,58 @@
-const User = require('./model');
-const util = require('../../utils/general');
 
-const getUser = (email) => {
-    const retrievedUser = searchUser(email);
-    if (util.isNullOrEmpty(retrievedUser)) {
-        return createUser(email);
-    } else {
-        return retrievedUser;
-    }
-}
+exports.createUser = function (req, res) {
+    let user = new user(
+        {
+            name: req.body.name
+        }
+    );
 
-/**
- *
- */
-const createUser = (email) => {
-    return new User({
-        email: email
+    user.save(function (err) {
+        if (err) {
+            return next(err);
+        }
+
+        res.send('User created successfully.');
     });
 }
 
-/**
- *
- */
-const searchUser = email => {
-    return User.findOne({ email: email });
+exports.getUser = function (req, res) {
+    User.findById(req.params.id, function (err, user) {
+        if (err) {
+            return next(err);
+        }
+
+        res.send(user);
+    });
 }
 
-module.exports = {
-    createUser,
-    searchUser
+exports.updateUser = function (req, res) {
+    User.findByIdAndUpdate(req.params.id, { $set: req.body },
+        function (err, user) {
+            if (err) {
+                return next(err);
+            }
+
+            res.send('User updated.');
+        });
+}
+
+exports.deleteUser = function (req, res) {
+    User.findByIdAndRemove(req.params.id, function (err) {
+        if (err) {
+            return next(err);
+        }
+
+        res.send('Deleted successfully.');
+    })
+}
+
+exports.getUserByName = function (req, res) {
+    User.find({name: req.params.name},
+        function (err, user) {
+            if (err) {
+                return next(err);
+            }
+
+            res.send(user);
+        });
 }

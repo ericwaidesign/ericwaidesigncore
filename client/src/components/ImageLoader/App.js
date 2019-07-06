@@ -80,7 +80,7 @@ class ImageLoaderApp extends Component {
      */
     render() {
         return (
-            <div>
+            <div id="imageLoaderAppContainer">
                 {this.renderSimpleImageSlider()}
             </div>
         );

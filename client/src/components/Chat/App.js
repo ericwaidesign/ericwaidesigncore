@@ -1,14 +1,37 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const App = () => (
-  <div id="chatAppContainer">
-      <section id="chatAppMain">
-        <form>
-          <input type="text" id="chatAppName" placeholder="Name" />
-          <textarea id="chatAppTextArea" placeholder="Message" />
-        </form>
-      </section>
-  </div>
-)
+class ChatApp extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: "Enter your message."
+        }
+    }
 
-export default App
+    handleChange(event) {
+        this.setState({ value: event.target.value });
+    }
+
+    handleSubmit(event) {
+        //
+        event.preventDefault();
+    }
+
+    addMessage() {
+
+    } 
+
+    render() {
+        return (
+            <div id="chatAppContainer">
+                <form onSubmit={this.handleSubmit}>
+                    <textarea id="chatAppMessage" value={this.state.value} onChange={this.handleChange} />
+
+                    <input type="submit" value="Send" />
+                </form>
+            </div>
+        );
+    }
+}
+
+export default ChatApp;
