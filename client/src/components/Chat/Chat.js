@@ -40,7 +40,6 @@ class Chat extends React.Component {
         return (
             <div className="chat-app-container">
                 <div className="chat-app-body">
-                    <div className="card-title">Global Chat</div>
                     <hr />
                     <div className="messages">
                         {this.state.messages.map(message => {
