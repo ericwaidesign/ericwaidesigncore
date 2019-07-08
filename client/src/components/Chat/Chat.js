@@ -2,6 +2,7 @@ import React from "react";
 import io from "socket.io-client";
 
 const event = require('./constants/events');
+const config = require('./constants/configs');
 
 class Chat extends React.Component {
     constructor(props) {
@@ -14,9 +15,12 @@ class Chat extends React.Component {
             messages: [] // holds all the messages(receive and send)
         };
 
-        this.socket = io('localhost:9000');
+        let host = io('localhost:9000');
+        if (this.socket == null) {
+            host = location.origin.replace(/^http/, 'ws')
+        }
 
-        this.socket.on(event.RECEIVE_MESSAGE, function (data) {
+        this.socket.on(event.RECEIVE_MESSAGE, function(data) {
             addMessage(data);
         });
 
@@ -36,6 +40,9 @@ class Chat extends React.Component {
 
         }
     }
+
+
+
     render() {
         return (
             <div className="chat-app-container">
