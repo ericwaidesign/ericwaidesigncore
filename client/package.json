@@ -44,6 +44,7 @@
         "webpack-merge": "^4.2.1"
     },
     "dependencies": {
+        "@tensorflow/tfjs": "^1.2.11",
         "faker": "^4.1.0",
         "react-redux": "^7.0.2",
         "redux-saga": "^1.0.2",

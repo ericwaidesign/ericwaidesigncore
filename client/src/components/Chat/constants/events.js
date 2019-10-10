@@ -1,6 +1,0 @@
-module.exports = {
-
-  RECEIVE_MESSAGE: "RECEIVE_MESSAGE",
-  SEND_MESSAGE: "SEND_MESSAGE"
-
-}
