@@ -1,5 +1,4 @@
 const Message = require("./model");
-const messageService = require("./utils");
 
 exports.getMessages = function (req, res) {
     Message.find({}, (err, messages) => {
@@ -8,7 +7,7 @@ exports.getMessages = function (req, res) {
 }
 
 exports.postMessage = function (req, res) {
-    let message = createMessage(req.author, req.message);
+    let message = createMessage(req.body.name, req.body.message);
 
     message.save((err) => {
         if (err) {
@@ -18,16 +17,11 @@ exports.postMessage = function (req, res) {
     })
 }
 
-/**
- * @description
- * @param {String} author - User Schema.ObjectId
- * @param {String} content - content of the Message
- */
-function createMessage(author, message) {
-    const message = new Message({
-        author: author,
-        content: content
+function createMessage(name, message) {
+    const messageObj = new Message({
+        name: name,
+        message: message
     });
 
-    return message;
+    return messageObj;
 }
