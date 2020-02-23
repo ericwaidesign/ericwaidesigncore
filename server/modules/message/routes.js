@@ -9,13 +9,12 @@ const apiRoutes = express.Router();
 const messageRoutes = express.Router();
 
 // Message Routes
-apiRoutes.use("/chat", messageRoutes);
+apiRoutes.use("/messages", messageRoutes);
 
 /**
- * @description HTTP GET /api/chat
  * @returns {JSON} - 
  */
-messageRoutes.route("/messages")
+messageRoutes.route("/")
     .get(messageController.getMessages)
     .post(messageController.postMessage);
 
