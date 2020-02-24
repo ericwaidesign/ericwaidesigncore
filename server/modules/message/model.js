@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const MessageSchema = new mongoose.Schema({
-    name: {
+    email: {
         type: String,
         require: true
     },
