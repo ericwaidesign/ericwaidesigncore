@@ -12,3 +12,6 @@
 /client/build
 
 # misc
+# config files
+/server/configs/envs/config.dev.js
+/server/configs/envs/config.prod.js
