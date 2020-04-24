@@ -24,12 +24,11 @@ exports.createEnrollees = function (req, res) {
             userId: enrollee.userId,
             firstName: enrollee.firstName,
             lastName: enrollee.lastName,
-            version: enrollee.version,
             insuranceCompany: enrollee.insuranceCompany,
-        }, function(err, dup) {
+        }, function (err, dup) {
             if (err) {
                 console.log("createEnrollees: Error: " + err);
-            } 
+            }
 
             if (dup) {
                 console.log("createEnrollees: Duplicate: " + dup);
@@ -37,7 +36,7 @@ exports.createEnrollees = function (req, res) {
                 enrollee.save(function (err) {
                     if (err) {
                         console.log("createEnrollees: Error: " + err);
-                    } 
+                    }
                 });
             }
         });
@@ -84,10 +83,30 @@ exports.removeAllEnrollees = function (req, res) {
  * @description Return all Enrollees in the collection.
  */
 exports.getAllEnrollees = function (req, res) {
-    Enrollee.find({}, function (err, enrollees) {
-        if (err) {
-            return next(err);
+    Enrollee.aggregate([
+        {
+            "$group": {
+                "_id": "$userId",
+                // "userId": { "$first": "$userId" },
+                "firstName": { "$first": "$firstName" },
+                "lastName": { "$first": "$lastName" },
+                "version": { "$max": "$version" },
+                "insuranceCompany": { "$first": "$insuranceCompany" },
+            }
+        },
+        {
+            "$sort": {
+                "lastName": 1, "firstName": 1
+            }
         }
-        res.send(enrollees);
-    });
+    ],
+        function (err, enrollees) {
+            if (err) {
+                console.log("getAllEnrollees: Error: " + err);
+            } else {
+                console.log("getAllEnrollees: Success: ");
+                res.send(enrollees);
+            }
+        }
+    );
 } 
