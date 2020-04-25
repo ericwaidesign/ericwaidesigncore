@@ -4,7 +4,6 @@
     "private": true,
     "scripts": {
         "start": "webpack-dev-server --open --config webpack.prod.js",
-        "dev": "webpack --config webpack.prod.js",
         "build": "webpack --config webpack.prod.js",
         "transpile": "babel src -d dist --copy-files",
         "prepublishOnly": "npm run transpile"
