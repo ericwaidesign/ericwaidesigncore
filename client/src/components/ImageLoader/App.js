@@ -41,22 +41,22 @@ class ImageLoaderApp extends Component {
             });
     }
 
-    setData = (jsonData) => {
-        const imageArray = [];
-        jsonData.forEach((imageData) => {
-            console.log(imageData);
-            imageArray.push(
-                new Image(
-                    imageData.highRestFileName,
-                    require("../../assets/" + imageData.highResPath + imageData.highRestFileName),
-                    imageData.lowResFileName,
-                    require("../../assets/" + imageData.lowResPath + imageData.lowResFileName)
-                )
-            );
-        });
-        console.log(imageArray);
-        this.setState({ images: imageArray });
-    }
+    // setData = (jsonData) => {
+    //     const imageArray = [];
+    //     jsonData.forEach((imageData) => {
+    //         console.log(imageData);
+    //         imageArray.push(
+    //             new Image(
+    //                 imageData.highRestFileName,
+    //                 require("../../assets/" + imageData.highResPath + imageData.highRestFileName),
+    //                 imageData.lowResFileName,
+    //                 require("../../assets/" + imageData.lowResPath + imageData.lowResFileName)
+    //             )
+    //         );
+    //     });
+    //     console.log(imageArray);
+    //     this.setState({ images: imageArray });
+    // }
 
     renderSimpleImageSlider() {
         if (this.state.imageData.length !== 0) {
