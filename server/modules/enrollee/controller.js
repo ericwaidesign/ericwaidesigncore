@@ -1,4 +1,5 @@
 const Enrollee = require("./model");
+const util = require('util');
 
 /**
  * @description Create new Enrollees with the given array of data.
@@ -8,15 +9,15 @@ exports.createEnrollees = function (req, res) {
 
     let enrollees = req.body;
 
-    for (enrolleeIndex in enrollees) {
+    for (enrollee of enrollees) {
         console.log(enrollees[enrolleeIndex]);
         let enrollee = new Enrollee(
             {
-                userId: enrollees[enrolleeIndex].userId,
-                firstName: enrollees[enrolleeIndex].firstName,
-                lastName: enrollees[enrolleeIndex].lastName,
-                version: enrollees[enrolleeIndex].version,
-                insuranceCompany: enrollees[enrolleeIndex].insuranceCompany,
+                userId: enrollee.userId,
+                firstName: enrollee.firstName,
+                lastName: enrollee.lastName,
+                version: enrollee.version,
+                insuranceCompany: enrollee.insuranceCompany,
             }
         );
 
@@ -105,6 +106,52 @@ exports.getAllEnrollees = function (req, res) {
                 console.log("getAllEnrollees: Error: " + err);
             } else {
                 console.log("getAllEnrollees: Success: ");
+                res.send(enrollees);
+            }
+        }
+    );
+}
+
+exports.getAllInsuranceCompanies = function (req, res) {
+    Enrollee.distinct('insuranceCompany', function (err, insuranceCompanies) {
+        if (err) {
+            console.log("getAllInsuranceCompanies: Error: " + err);
+        } else {
+            console.log("getAllInsuranceCompanies: Success: " + insuranceCompanies);
+            res.send(insuranceCompanies);
+        }
+    });
+}
+
+/**
+ * @description Return all Enrollees in the collection.
+ */
+exports.getAllEnrolleesForGivenInsuranceCompany = function (req, res) {
+    let insuranceCompany = req.params.name;
+    console.log("getAllEnrolleesForGivenInsuranceCompany: " + insuranceCompany);
+    Enrollee.aggregate([
+        { "$match": { "insuranceCompany": insuranceCompany } },
+        {
+            "$group": {
+                "_id": "$userId",
+                "userId": { "$first": "$userId" },
+                "firstName": { "$first": "$firstName" },
+                "lastName": { "$first": "$lastName" },
+                "version": { "$max": "$version" },
+                "insuranceCompany": { "$first": "$insuranceCompany" },
+            }
+        },
+        {
+            "$sort": {
+                "lastName": 1, "firstName": 1
+            }
+        }
+    ],
+        function (err, enrollees) {
+            if (err) {
+                console.log("getAllEnrolleesForGivenInsuranceCompany: Error: " + err);
+            } else {
+                console.log("getAllEnrolleesForGivenInsuranceCompany: Success: " + enrollees);
                 res.send(enrollees);
             }
         }
