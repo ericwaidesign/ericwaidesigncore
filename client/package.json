@@ -5,16 +5,14 @@
     "scripts": {
         "start": "webpack-dev-server --open --config webpack.prod.js",
         "build": "webpack --config webpack.prod.js",
-        "transpile": "babel src -d dist --copy-files",
-        "prepublishOnly": "npm run transpile",
-        "heroku-postbuild": "webpack -p"
+        "transpile": "babel src -d dist --copy-files"
     },
     "peerDependencies": {
         "react": "^16.3.0",
         "react-dom": "^16.3.0",
         "redux": "^3.7.2"
     },
-    "devDependencies": {
+    "dependencies": {
         "@babel/polyfill": "^7.4.3",
         "babel-cli": "^6.26.0",
         "babel-core": "^6.26.3",
@@ -41,9 +39,7 @@
         "webpack": "^4.29.6",
         "webpack-cli": "^3.3.0",
         "webpack-dev-server": "^3.2.1",
-        "webpack-merge": "^4.2.1"
-    },
-    "dependencies": {
+        "webpack-merge": "^4.2.1",
         "@tensorflow/tfjs": "^1.2.11",
         "faker": "^4.1.0",
         "react-redux": "^7.0.2",
