@@ -39,6 +39,6 @@
     "start": "pm2-runtime server/server.js -i max",
     "dev": "nodemon --watch server/server.js",
     "inspect": "node --inspect-brk server/server.js",
-    "heroku-postbuild": "cd client && yarn && yarn run build"
+    "heroku-postbuild": "cd client && yarn && yarn run build"
   }
 }
