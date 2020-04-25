@@ -8,8 +8,8 @@
 /coverage
 
 # production
-/build
-/client/build
+# /build
+# /client/build
 
 # misc
 # config files
