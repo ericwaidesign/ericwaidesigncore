@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import ImageLoaderApp from "./components/ImageLoader/App";
-import ChatApp from "./components/Chat/App";
 
 import "./assets/css/index.css";
 
