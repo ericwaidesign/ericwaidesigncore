@@ -6,17 +6,17 @@
     },
     "private": true,
     "scripts": {
-        "start": "webpack-dev-server --open --config webpack.prod.js",
+        "start": "webpack-dev-server --open --config webpack.dev.js",
+        "gp": "webpack-dev-server --host 0.0.0.0 --open --config webpack.dev.js",
         "build": "webpack --config webpack.prod.js",
-        "transpile": "babel src -d dist --copy-files"
+        "transpile": "babel src -d dist --copy-files",
+        "prepublishOnly": "npm run transpile"
     },
     "peerDependencies": {
         "react": "^16.3.0",
-        "react-dom": "^16.3.0",
-        "redux": "^3.7.2"
+        "react-dom": "^16.3.0"
     },
     "devDependencies": {
-        "@babel/polyfill": "^7.4.3",
         "babel-cli": "^6.26.0",
         "babel-core": "^6.26.3",
         "babel-loader": "^7.1.4",
@@ -37,20 +37,10 @@
         "simple-image-slider": "^1.1.0",
         "strip-loader": "^0.1.2",
         "style-loader": "^0.23.1",
-        "typescript": "^3.4.3",
         "url-loader": "^1.1.2",
         "webpack": "^4.29.6",
         "webpack-cli": "^3.3.0",
         "webpack-dev-server": "^3.2.1",
         "webpack-merge": "^4.2.1"
-    },
-    "dependencies": {
-        "@tensorflow/tfjs": "^1.2.11",
-        "faker": "^4.1.0",
-        "react-redux": "^7.0.2",
-        "redux-saga": "^1.0.2",
-        "shortid": "^2.2.14",
-        "txtgen": "^2.2.2",
-        "ws": "^3.2.0"
     }
 }

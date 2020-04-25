@@ -6,13 +6,9 @@
   },
   "private": true,
   "dependencies": {
-    "@tensorflow/tfjs": "^1.2.11",
-    "axios": "^0.18.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "1.18.3",
     "chalk": "^2.4.2",
-    "chance": "^1.0.18",
-    "cors": "^2.8.5",
     "express": "4.16.3",
     "helmet": "^3.16.0",
     "jsonwebtoken": "8.1.1",
@@ -21,21 +17,12 @@
     "passport": "0.3.2",
     "passport-jwt": "2.2.1",
     "passport-local": "1.0.0",
-    "pm2": "^3.5.0",
+    "pm2": "3.0.0",
     "socket.io": "2.2.0",
-    "socket.io-client": "^2.2.0",
-    "ws": "^3.2.0",
     "yarn": "1.9.2"
   },
   "devDependencies": {
-    "faker": "^4.1.0",
-    "lodash": "^4.17.11",
-    "nodemon": "^1.18.1",
-    "redux": "^4.0.1",
-    "shortid": "^2.2.14",
-    "textgen": "0.0.0",
-    "txtgen": "^2.2.2",
-    "typescript": "^3.4.3"
+    "nodemon": "^1.18.1"
   },
   "scripts": {
     "preinstall": "npm install pm2 -g",
