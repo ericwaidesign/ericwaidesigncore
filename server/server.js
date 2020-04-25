@@ -1,7 +1,7 @@
 "use strict"
 
 // Set environment variable ("prod" or "dev")
-process.env.NODE_ENV = process.env.NODE_ENV || "dev";
+process.env.NODE_ENV = process.env.NODE_ENV || "development";
 
 const Routes = require("./routes");
 const db = require("./database");
