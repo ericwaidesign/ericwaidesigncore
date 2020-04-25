@@ -6,7 +6,8 @@
         "start": "webpack-dev-server --open --config webpack.prod.js",
         "build": "webpack --config webpack.prod.js",
         "transpile": "babel src -d dist --copy-files",
-        "prepublishOnly": "npm run transpile"
+        "prepublishOnly": "npm run transpile",
+        "postinstall": "yarn run build"
     },
     "peerDependencies": {
         "react": "^16.3.0",
