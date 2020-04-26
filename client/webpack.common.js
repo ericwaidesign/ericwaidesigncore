@@ -15,9 +15,7 @@ const CopyWebpackPluginConfig = new CopyWebpackPlugin([{
 }]);
 
 module.exports = {
-    // entry: [
-    //     "@babel/polyfill", path.join(__dirname, "src/index.js")
-    // ],
+    entry: path.join(__dirname, "src/index.js"),
     output: {
         path: path.join(__dirname, "public"),
         filename: "bundle.js",
@@ -40,15 +38,10 @@ module.exports = {
                 use: ["html-loader"]
             },
             {
-                test: /\.jpg$/,
-                use: ["ignore-loader"]
-            },
-            {
-                // config to not scramble the image file names
-                test: /\.ico$/,
+                test: /\.(ico)$/,
                 use: [
                     {
-                        loader: "file-loader",  // retain original file name
+                        loader: "file-loader", 
                         options: {
                             name: "assets/[name].[ext]"
                         }
@@ -56,17 +49,17 @@ module.exports = {
                 ]
             },
             {
-                // any file extension matches .png, .jpeg, .jpg or .svg
-                test: /\.(png|jp(e*)g|svg)$/,
-                use: [{
-                    loader: "url-loader",
-                    options: {
-                        // Convert images < 8kb to base64 strings, inlined in the code
-                        // larger images will be passed to file-loader to process
-                        limit: 8000,
-                        name: "assets/images/[hash]-[name].[ext]"
-                    }
-                }]
+                test: /\.(jpg)$/,
+                use: [
+                    {
+                        loader: "url-loader",
+                        options: {
+                            // Convert images < 8kb to base64 strings, inlined in the code
+                            // larger images will be passed to file-loader to process
+                            limit: 8000,
+                            name: "assets/images/[hash]-[name].[ext]"
+                        }
+                    }]
             }
         ]
     },
