@@ -1,0 +1,12 @@
+module.exports = {
+
+    REGISTER: "REGISTER",
+    JOIN: "JOIN",
+    LEAVE: "LEAVE",
+    MESSAGE: "MESSAGE",
+    CHAT_ROOMS: "CHAT_ROOMS",
+    AVAILABLE_USERS: "AVAILABLE_USERS",
+    DISCONNECT: "DISCONNECT",
+    ERROR: "ERROR"
+
+}

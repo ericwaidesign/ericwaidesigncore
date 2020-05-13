@@ -1,0 +1,19 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/client/node_modules
+/client/dist
+
+# testing
+/coverage
+
+# production
+/build
+/client/build
+
+# misc
+# config files
+/server/configs/envs
+# /server/configs/envs/config.dev.js
+# /server/configs/envs/config.prod.js
