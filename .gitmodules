@@ -1,0 +1,3 @@
+[submodule "server/configs"]
+	path = server/configs
+	url = git@github.com:ericwaidesign/configs.git
