@@ -1,0 +1,3 @@
+[submodule "server/--force"]
+	path = server/--force
+	url = git@github.com:ericwaidesign/ericwaidesigncore-configs.git
