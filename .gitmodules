@@ -1,0 +1,3 @@
+[submodule "ericwaidesigncore-configs"]
+	path = ericwaidesigncore-configs
+	url = git@github.com:ericwaidesign/ericwaidesigncore-configs.git
