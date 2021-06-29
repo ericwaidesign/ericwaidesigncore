@@ -12,11 +12,9 @@ module.exports = (config) => {
 	mongoose.Promise = global.Promise;
 	mongoose.set("debug", config.DB.DEBUG);
 
-	const url = config.DB_CONNECTION_STRING;
-
 	/* create db connection */
 	mongoose.connect(
-		url,
+		config.DB_CONNECTION_STRING,
 		{
 			useNewUrlParser: true,
 			useFindAndModify: false,
@@ -28,7 +26,7 @@ module.exports = (config) => {
 	// event is fired when the connection is successfully connected
 	mongoose.connection.on("connected", () => {
 		console.log(
-			chalk`{green Mongoose connection opens {green.bold ${config.DB.MONGODB}}}`
+			chalk`{green Mongoose connection opens {green.bold ${config.DB.NAME}}}`
 		);
 	});
 
@@ -36,7 +34,7 @@ module.exports = (config) => {
 	// event is fired when the connection is failed to connect
 	mongoose.connection.on("error", err => {
 		console.error(
-			chalk`{red Mongoose connection error: {red bold ${config.DB.MONGODB}, ${err}}}`
+			chalk`{red Mongoose connection error: {red bold ${config.DB.NAME}, ${err}}}`
 		);
 	});
 
@@ -44,7 +42,7 @@ module.exports = (config) => {
 	// event is fired when the user was disconnected.
 	mongoose.connection.on("disconnected", err => {
 		console.error(
-			chalk`{red Mongoose connection: {red.bold ${config.DB.MONGODB}} disconnected}`
+			chalk`{red Mongoose connection: {red.bold ${config.DB.NAME}} disconnected}`
 		);
 	});
 
@@ -52,7 +50,7 @@ module.exports = (config) => {
 	mongoose.connection.on("SIGINT", () => {
 		mongoose.connection.close(() => {
 			console.log(
-				chalk`{yellow Mongoose connection disconnected through app termination {yellow.bold ${config.DB.MONGODB}}}`
+				chalk`{yellow Mongoose connection disconnected through app termination {yellow.bold ${config.DB.NAME}}}`
 			);
 		});
 		process.exit(0);

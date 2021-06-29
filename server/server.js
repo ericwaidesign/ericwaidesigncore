@@ -19,7 +19,7 @@ server.listen(configs.PORT, function () {
 });
 
 // initialize express
-Express.init(app, express);
+Express.init(app);
 
 // connect Mongodb
 db.connectMongoDB(configs);

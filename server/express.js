@@ -1,10 +1,12 @@
 "use strict"
 
+const bodyParser = require('body-parser');
 const cors = require('cors');
+const express = require("./express");
 const helmet = require("helmet");
 const morgan = require("morgan");
 
-exports.init = (app, express) => {
+exports.init = (app) => {
 
 	// MIDDLEWARES: always load regardless of the environment:
 	// =======================================================
@@ -21,8 +23,10 @@ exports.init = (app, express) => {
 
 	// parse application/x-www-form-urlencoded
 	//  parse incoming JSON form data POST requests into req.body obj
-	app.use(express.urlencoded( {extended:false} ));
-	app.use(express.json());
+	app.use(bodyParser.urlencoded({ extended: false }));
+	app.use(bodyParser.json())
+	// app.use(express.urlencoded({extended:false}));
+	// app.use(express.json());
 
 	// allow cross-origin resource sharing (CORS)
 	app.use(function (req, res, next) {
