@@ -28,9 +28,6 @@
   "devDependencies": {
     "nodemon": "^1.18.1"
   },
-  "optionalDependencies": {
-    "fsevents": "^1.2.7"
-  },
   "scripts": {
     "preinstall": "npm install pm2 -g",
     "heroku-postbuild": "cd client && yarn",
