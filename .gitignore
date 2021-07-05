@@ -1,17 +1,16 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
 node_modules/
-/client/node_modules
-/client/dist
+client/node_modules/
+client/dist/
 
 # testing
-/coverage
+coverage/
 
 # production
-/build
-/client/build
+build/
+client/build/
 
 # misc
 # config files
