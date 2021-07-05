@@ -12,6 +12,8 @@ coverage/
 build/
 client/build/
 
+package-lock.json
+
 # misc
 # config files
 # /server/configs/envs
